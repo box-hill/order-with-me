@@ -1,7 +1,7 @@
 import React from 'react';
 
 import app from "./firebase";
-import { getDatabase, ref, set } from 'firebase/database';
+import { getDatabase, ref, set, child, push } from 'firebase/database';
 // import "firebase/database";
 // import "firebase/firestore";
 
@@ -11,12 +11,15 @@ import Navbar from './components/Navbar'
 function App() {
   function FirebasePush(){
     // https://firebase.google.com/docs/database/web/read-and-write
-    const db = getDatabase(app)
-    //const todosRef = ref(db, "tables");
-    set(ref(db, 'tables/' + 'tableId'),{
+    const db = getDatabase(app);
+    const newOrderKey = push(child(ref(db), 'tables/tableId/orders/')).key; // create new key
+    console.log(newOrderKey);
+    // tableId should be a variable from user input (security)
+    set(ref(db, 'tables/tableId/orders/' + newOrderKey),{
       tableId: '29',
       collab: false,
-    })
+    });
+
 
   }
   
