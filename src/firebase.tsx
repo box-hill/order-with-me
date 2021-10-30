@@ -1,4 +1,8 @@
-import firebase from "firebase/compat/app";
+// import firebase from "firebase/compat/app";
+import { initializeApp } from 'firebase/app';
+
+
+
 const { REACT_APP_FIREBASE_API, REACT_APP_FIREBASE_AUTHDOMAIN, REACT_APP_FIREBASE_DATABASE_URL, REACT_APP_FIREBASE_PROJECTID, REACT_APP_FIREBASE_STORAGEBUCKET, REACT_APP_FIREBASE_MESSAGINGSENDERID, REACT_APP_FIREBASE_APPID } = process.env;
 
 const firebaseConfig = {
@@ -11,6 +15,9 @@ const firebaseConfig = {
     appId: REACT_APP_FIREBASE_APPID
 };
 
-firebase.initializeApp(firebaseConfig);
+// firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
-export default firebase;
+export default app;
+
+// export default firebase;
