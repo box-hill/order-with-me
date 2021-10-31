@@ -41,6 +41,22 @@ function Item(props: Props) {
         console.log(quantity);
     }
 
+    // returns an object with the item's info 
+    function returnFilteredItem(itemId: string){
+        const filteredItem = items.filter(item => item.id === itemId);
+        if(filteredItem.length === 0){
+            console.log('cannot find item');
+            return null;
+        }
+        else if(filteredItem.length > 1){
+            console.log('duplicate items');
+            return null;
+        }
+        else{
+            return filteredItem[0];
+        }
+    }    
+
     function addToCart(){
         if(quantity === 0) return;
         // check if cart has our item or if we're adding a new item
@@ -68,25 +84,11 @@ function Item(props: Props) {
                 <button onClick={() => modifyQuantity('minus')}>-</button>
                 <span>Quantity: {quantity}</span>
                 <button onClick={() => modifyQuantity('plus')}>+</button>
-                <button onClick={addToCart}>Add to cart</button>
+                <button onClick={addToCart} disabled={quantity === 0}>Add to cart</button>
             </div>
         </div>
     );
 }
 
-function returnFilteredItem(itemId: string){
-    const filteredItem = items.filter(item => item.id === itemId);
-    if(filteredItem.length === 0){
-        console.log('cannot find item');
-        return null;
-    }
-    else if(filteredItem.length > 1){
-        console.log('duplicate items');
-        return null;
-    }
-    else{
-        return filteredItem[0];
-    }
-}
 
-export { Item, returnFilteredItem };
+export { Item };
