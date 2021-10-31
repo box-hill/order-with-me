@@ -1,14 +1,28 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router';
+import  { items, ItemInterface } from "./items";
 
-function ItemsDisplay() {
+interface MatchParams {
+    category: string;
+}
+
+interface Props extends RouteComponentProps<MatchParams> { };
+
+
+function ItemsDisplay(props: Props) {
+    const { category } = props.match.params;
+    console.log(category);
+    const filteredItems = items.filter(item => item.category.toLowerCase() === category.toLowerCase());
 
     return (
         <div>
             <Link to='/'><button>Back</button></Link>
-            ItemsDisplay goes here.
-            This will include a list of items from a category.
-            e.g. in the Meat category, we display wagyuu, pork belly, beef tongue etc.
+            {filteredItems.map((item:ItemInterface) => {
+                return (
+                    <Link to={`/menu/${category}/${item.id}`}>{item.name}</Link>    
+                );
+            })}
         </div>
     );
 }

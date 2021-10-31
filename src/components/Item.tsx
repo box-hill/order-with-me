@@ -1,23 +1,25 @@
 import React from 'react'
-import { RouteComponentProps, match } from 'react-router';
+import { Link } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router';
+import  { items, ItemInterface } from "./items";
+
 
 interface MatchParams {
+    category: string;
     id: string;
 }
 
-interface Props extends RouteComponentProps<MatchParams> {}
+interface Props extends RouteComponentProps<MatchParams> { };
 
 function Item(props: Props) {
-
-    const { id } = props.match.params;
+    const { id, category } = props.match.params;
     console.log('item id is ', id);
+    console.log('category is ', category);
+
     return (
         <div>
-            Item detail will go here. 
-            This will show the item image, have buttons to increment and 
-            decrement quantity then add to cart.
-            (won't implement an immediate order now button 
-            that jumps straight to checkout yet)
+            <Link to={`/menu/${category}`}><button>Back</button></Link>
+
         </div>
     );
 }

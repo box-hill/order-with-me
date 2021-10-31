@@ -14,7 +14,6 @@ interface Props {
 function Form(props: Props) {
     const { label, tableId, setTableId, setValidSession, setGlobalTableId } = props;
     function onChangeHandler(e: React.FormEvent<HTMLInputElement>){
-        console.log(e.currentTarget.value);
         setTableId(e.currentTarget.value);
     }
 
