@@ -48,6 +48,9 @@ function Cart(props: Props) {
                     </div>
                 )
             })}
+            <div>
+                <button>Order</button>
+            </div>
         </div>
     );
 }
