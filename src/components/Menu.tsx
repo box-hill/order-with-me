@@ -1,11 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import  { categories, Category } from "./categories";
+
 
 function Menu() {
-
+    useEffect(() => {
+        console.log('hello from menu')
+        console.log(categories);
+    }, [])
     return (
-        <div>
-            Menu will go here. This component will be used to 
-            list the menu items in a categeory
+        <div className='menu'>
+            {categories.map((category: Category) => {
+                return (
+                    <Link to={`/menu/${category.name.toLowerCase()}`}>{category.name}</Link>
+                );
+            })}
         </div>
     );
 }
