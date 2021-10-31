@@ -4,7 +4,7 @@ import app from "../firebase";
 import { getDatabase, ref, set, child, push, onValue } from 'firebase/database';
 
 function Form() {
-    const [tableId, setTableId] = useState('');
+    const [tableId, setTableId] = useState(''); // lift state up later;
 
     function onChangeHandler(e: React.FormEvent<HTMLInputElement>){
         console.log(e.currentTarget.value);
@@ -31,6 +31,6 @@ function Form() {
           <button onClick={JoinTable}>Join Table</button>
       </div>
     );
-  }
+}
   
-  export default Form;
+export default Form;

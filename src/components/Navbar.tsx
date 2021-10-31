@@ -4,10 +4,9 @@ import NavItem from './NavItem';
 
 function Navbar() {
   return (
-    <div>
-      <div>Hello world from Navbar~!</div>
-      <NavItem></NavItem>
-    </div>
+    <nav>
+      <NavItem link='/menu/meat'></NavItem>
+    </nav>
   );
 }
 

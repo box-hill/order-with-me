@@ -1,10 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-function NavItem() {
+interface Props {
+  link: string,
+  text?: string
+}
+
+function NavItem(props: Props){
   return (
-    <div>
-        Hello from NavItem?!!?
-    </div>
+    <Link to={props.link}>
+        <li>{props.text}</li>
+    </Link>
+    // <Link to='/menu/meat/'>Hello?</Link>
   );
 }
 

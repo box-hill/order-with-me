@@ -1,5 +1,9 @@
 $divColor: rgb(112, 112, 112);
 
+body {
+    margin: 0;
+}
+
 div {
     background: $divColor; 
 }
