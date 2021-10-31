@@ -18,9 +18,9 @@ function ItemsDisplay(props: Props) {
     return (
         <div>
             <Link to='/'><button>Back</button></Link>
-            {filteredItems.map((item:ItemInterface) => {
+            {filteredItems.map((item:ItemInterface, index) => {
                 return (
-                    <Link to={`/menu/${category}/${item.id}`}>{item.name}</Link>    
+                    <Link key={index} to={`/menu/${category}/${item.id}`}>{item.name}</Link>    
                 );
             })}
         </div>

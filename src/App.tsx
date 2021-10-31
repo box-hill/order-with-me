@@ -15,14 +15,15 @@ import Cart from './components/Cart';
 
 function App() {
   const [globalTableId, setGlobalTableId] = useState('');
+  const [cart, setCart] = useState([{id: '1', quantity: 4}]);
 
   return (
     <div className='app'>
       <HashRouter basename='/'>
-      <Navbar></Navbar>
+      <Navbar/>
         <Switch>
           <Route exact path ="/" component={() => <Home setGlobalTableId={setGlobalTableId}/>}/>
-          <Route path ="/menu/:category/:id" component={Item}/>
+          <Route path ="/menu/:category/:id" component={(props: any) => <Item {...props} cart={cart} setCart={setCart}/>}/>
           <Route path ="/menu/:category" component={ItemsDisplay}/>
           <Route exact path="/cart" component={() => <Cart/>}/>
           <Route exact path="/orders" component={() => <PendingOrders/>}/>
