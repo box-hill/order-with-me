@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 // import app from "./firebase";
 // import "firebase/database";
 // import "firebase/firestore";
@@ -18,7 +18,7 @@ function App() {
   
   return (
     <div className='app'>
-      <BrowserRouter>
+      <HashRouter basename='/'>
       <Navbar></Navbar>
         <Switch>
           <Route exact path ="/" component={Home}/>
@@ -27,7 +27,7 @@ function App() {
           <Route exact path="/cart" component={() => <Cart/>}/>
           <Route exact path="/orders" component={() => <PendingOrders/>}/>
         </Switch>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
