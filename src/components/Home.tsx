@@ -1,13 +1,60 @@
 import React from 'react';
+import Form from './Form';
+import { useState, useEffect } from 'react';
 
-function Home() {
+// The home page will show the menu categories if the user has already entered a table number (check localstorage session too)
+// else, the home page will show a simple form component so the user can input a table number
+
+interface Props {
+    setGlobalTableId: Function
+}
+
+function Home(props: Props) {
+    const [loading, setLoading] = useState(true);
+    const [validSession, setValidSession] = useState (false);
+    const [tableId, setTableId] = useState('');
+
+    useEffect(() => {
+        retrieveSession();
+
+    },[]);
+
+    // check localStorage
+    function retrieveSession(){
+        const retrievedSession = localStorage.getItem('sessionTimeStamp');
+        if(retrievedSession === null){
+            console.log('retrievedSession is null');
+        }
+        else{
+            const timeNow = Date.now();
+            const lastEntered = parseInt(retrievedSession);
+            console.log(timeNow, lastEntered);
+            if(timeNow - lastEntered < 3.6e+6){
+                console.log('recovering previous session from within 1 hour ago');
+                setValidSession(true);
+            }
+        }
+        setLoading(false);
+    }
+    
+    if(loading){
+        return (
+            <div>
+                Loading.... 
+                Place a loader here
+            </div>
+        )
+    }
 
     return (
-      <div>The Food Categories will go here
-          Also, this component will have the Form component. 
-          We willcheck if the user has a valid table sesh id.
-          If they don't, we'll show the Form element. else the home page
-      </div>
+        <div>
+            {validSession ? 
+            <div>Show categories here (Meat, drinks, etc.)</div> : 
+            <Form 
+                label="Enter your 4 Digit Table ID to get Started!" 
+                tableId={tableId} setTableId={setTableId} 
+                setValidSession={setValidSession} setGlobalTableId={props.setGlobalTableId}></Form>}
+        </div>
     );
 }
   

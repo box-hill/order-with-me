@@ -2,6 +2,10 @@ body {
   margin: 0;
 }
 
+input:focus {
+  outline: none;
+}
+
 div {
   background: #707070;
 }
