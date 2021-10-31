@@ -9,8 +9,7 @@ import './styles/style.css';
 import Navbar from './components/Navbar'
 import PendingOrders from './components/PendingOrders';
 import Home from './components/Home';
-import Menu from './components/Menu';
-import ItemDisplay from './components/ItemDisplay';
+import ItemsDisplay from './components/ItemsDisplay';
 import Item from './components/Item';
 import Cart from './components/Cart';
 
@@ -24,8 +23,7 @@ function App() {
         <Switch>
           <Route exact path ="/" component={() => <Home setGlobalTableId={setGlobalTableId}/>}/>
           <Route path ="/menu/:category/:id" component={Item}/>
-          <Route path ="/menu/:category" component={ItemDisplay}/>
-          <Route exact path="/menu" component={Menu}/>
+          <Route path ="/menu/:category" component={ItemsDisplay}/>
           <Route exact path="/cart" component={() => <Cart/>}/>
           <Route exact path="/orders" component={() => <PendingOrders/>}/>
         </Switch>

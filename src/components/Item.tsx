@@ -1,7 +1,16 @@
 import React from 'react'
+import { RouteComponentProps, match } from 'react-router';
 
-function Item() {
+interface MatchParams {
+    id: string;
+}
 
+interface Props extends RouteComponentProps<MatchParams> {}
+
+function Item(props: Props) {
+
+    const { id } = props.match.params;
+    console.log('item id is ', id);
     return (
         <div>
             Item detail will go here. 

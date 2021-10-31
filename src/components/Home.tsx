@@ -1,5 +1,6 @@
 import React from 'react';
 import Form from './Form';
+import Menu from './Menu';
 import { useState, useEffect } from 'react';
 
 // The home page will show the menu categories if the user has already entered a table number (check localstorage session too)
@@ -10,6 +11,7 @@ interface Props {
 }
 
 function Home(props: Props) {
+    const { setGlobalTableId } = props;
     const [loading, setLoading] = useState(true);
     const [validSession, setValidSession] = useState (false);
     const [tableId, setTableId] = useState('');
@@ -19,7 +21,7 @@ function Home(props: Props) {
 
     },[]);
 
-    // check localStorage
+    // check localStorage for a valid session
     function retrieveSession(){
         const retrievedSession = localStorage.getItem('sessionTimeStamp');
         if(retrievedSession === null){
@@ -49,11 +51,11 @@ function Home(props: Props) {
     return (
         <div>
             {validSession ? 
-            <div>Show categories here (Meat, drinks, etc.)</div> : 
+            <Menu/> : 
             <Form 
                 label="Enter your 4 Digit Table ID to get Started!" 
                 tableId={tableId} setTableId={setTableId} 
-                setValidSession={setValidSession} setGlobalTableId={props.setGlobalTableId}></Form>}
+                setValidSession={setValidSession} setGlobalTableId={setGlobalTableId}></Form>}
         </div>
     );
 }
