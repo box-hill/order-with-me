@@ -10,9 +10,9 @@ function Menu() {
     }, [])
     return (
         <div className='menu'>
-            {categories.map((category: Category) => {
+            {categories.map((category: Category, index) => {
                 return (
-                    <Link to={`/menu/${category.name.toLowerCase()}`}>{category.name}</Link>
+                    <Link key={index} to={`/menu/${category.name.toLowerCase()}`}>{category.name}</Link>
                 );
             })}
         </div>

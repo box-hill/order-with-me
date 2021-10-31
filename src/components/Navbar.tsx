@@ -6,7 +6,8 @@ function Navbar() {
   
   return (
     <nav>
-      <NavItem link='/menu/'></NavItem>
+      <NavItem link='/' text="Menu"></NavItem>
+      <NavItem link='/cart' text="Cart"></NavItem>
     </nav>
   );
 }
