@@ -17,18 +17,6 @@ function Form(props: Props) {
     function onChangeHandler(e: React.FormEvent<HTMLInputElement>){
         setTableId(e.currentTarget.value);
     }
-
-    // Find if tableid exists on the database. 
-    // function FindExistingTable(){
-    //     const db = getDatabase(app);
-    //     const docRef = ref(db, 'tables/' + tableId);
-    //     onValue(docRef, (snapshot) => {
-    //         const data = snapshot.val();
-    //         console.log('Find existing table: ', data);
-    //     }, {
-    //         onlyOnce: true
-    //     });
-    // }
     
     function JoinTable(e: React.MouseEvent){
         e.preventDefault();
