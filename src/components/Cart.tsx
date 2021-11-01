@@ -1,8 +1,11 @@
-import { map } from '@firebase/util';
 import React, { useState, useEffect } from 'react'
-import  { items, ItemInterface } from "./items";
+//import  { items, ItemInterface } from "./items";
 import { CartItemObj } from "./Item";
-import { isObjectBindingPattern } from 'typescript';
+//import { isObjectBindingPattern } from 'typescript';
+
+import app from '../firebase';
+import { getDatabase, ref, set, child, push, onValue } from 'firebase/database';
+
 
 interface Props { 
     cart: Array<CartItemObj>,
@@ -48,6 +51,16 @@ export function Cart(props: Props) {
     function processOrder(){
         if(!validSession){
             return;
+        }
+        firebasePush();
+
+        function firebasePush(){
+            // https://firebase.google.com/docs/database/web/read-and-write
+            const db = getDatabase(app);
+            const newOrderKey = push(child(ref(db), 'tables/tableId/orders/')).key; // create new key
+            console.log(newOrderKey);
+            // tableId should be a variable from user input (security)
+            set(ref(db, `tables/${globalTableId}/orders/${newOrderKey}`), cart);
         }
     }
 

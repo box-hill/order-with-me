@@ -6,13 +6,14 @@ import { isPropertySignature } from 'typescript';
 
 interface Props {
     label: string,
-    tableId: string,
-    setTableId: Function,
     setValidSession: Function,
+    globalTableId?: string,
     setGlobalTableId: Function,
+    validSession?: boolean,
 }
 function Form(props: Props) {
-    const { label, tableId, setTableId, setValidSession, setGlobalTableId } = props;
+    const { label, validSession, setValidSession, globalTableId, setGlobalTableId } = props;
+    const [tableId, setTableId] = useState('');
     function onChangeHandler(e: React.FormEvent<HTMLInputElement>){
         setTableId(e.currentTarget.value);
     }
@@ -46,11 +47,13 @@ function Form(props: Props) {
         }
     }
   
+    const validLabel = 'Current Table: ' + globalTableId;
+
     return (
       <form>
-          <label>{label}</label>
+          <label>{validSession ? validLabel : label}</label>
           <input type="text" minLength={4} maxLength={4} onChange={onChangeHandler} value={tableId} />
-          <button onClick={JoinTable}>Join Table</button>
+          <button onClick={JoinTable}>{validSession ? 'Change Table' : 'Join Table'}</button>
       </form>
     );
 }

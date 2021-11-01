@@ -9,6 +9,8 @@ import Navbar from './components/Navbar'
 import PendingOrders from './components/PendingOrders';
 import Home from './components/Home';
 import ItemsDisplay from './components/ItemsDisplay';
+import Menu from './components/Menu';
+import Form from './components/Form';
 import { Item } from './components/Item';
 import { Cart } from './components/Cart';
 
@@ -25,6 +27,7 @@ function App() {
     const retrievedSession = localStorage.getItem('sessionTimeStamp');
     if(retrievedSession === null){
         console.log('retrievedSession is null');
+        localStorage.clear();
     }
     else{
         const timeNow = Date.now();
@@ -47,24 +50,25 @@ function App() {
 
   useEffect(() => {
     retrieveSession();
-    // when a user enters the website, we'll listen for order changes on firebase
-    const db = getDatabase(app);
-    // listens actively for a change in database. 
-    const docRef = ref(db, 'tables/tableId/orders');
-    onValue(docRef, (snapshot) => {
-      const data = snapshot.val();
-      console.log(data);
-    })
-    // if they enter without a valid table id, we might have to add a listener again(?)..probably when globalTableId Updates
-    // this way we cover the scenario where they change table Id. 
-  },[])
+  }, [])
 
   useEffect(() => {
-    // whenever cart gets updated, we'll update the localStorage too, that way if the user refreshes, the items are saved
+    // whenever cart gets updated, update the localStorage cart too, so it persists
     let cartJSONString = JSON.stringify(cart);
-    console.log(cartJSONString);
     localStorage.setItem('cart', cartJSONString);
   },[cart]);
+
+  useEffect(() => {
+    if(validSession === true && globalTableId !== ''){ // on
+      const db = getDatabase(app);
+      // listens actively for a change in database. 
+      const docRef = ref(db, `tables/${globalTableId}/orders`);
+      onValue(docRef, (snapshot) => {
+      const data = snapshot.val();
+      console.log(data);
+      })
+    }
+  }, [validSession, globalTableId])
 
   return (
     <div className='app'>
@@ -74,6 +78,8 @@ function App() {
           <Route exact path ="/" component={() => <Home setGlobalTableId={setGlobalTableId} validSession={validSession} setValidSession={setValidSession} loading={loading}/>}/>
           <Route path ="/menu/:category/:id" component={(props: any) => <Item {...props} cart={cart} setCart={setCart}/>}/>
           <Route path ="/menu/:category" component={ItemsDisplay}/>
+          <Route path ="/menu" component={Menu}/>
+          <Route path = "/table" component={() => <Form label="Enter your 4 Digit Table ID to get Started!" validSession={validSession} setValidSession={setValidSession} globalTableId={globalTableId} setGlobalTableId={setGlobalTableId}></Form>}/>
           <Route exact path="/cart" component={() => <Cart cart={cart} setCart={setCart} validSession={validSession} globalTableId={globalTableId}/>}/>
           <Route exact path="/orders" component={() => <PendingOrders/>}/>
         </Switch>

@@ -15,12 +15,6 @@ interface Props {
 
 function Home(props: Props) {
     const { setGlobalTableId, validSession, setValidSession, loading } = props;
-
-    const [tableId, setTableId] = useState('');
-
-    // useEffect(() => {
-    //     retrieveSession();
-    // },[]);
     
     if(loading){
         return (
@@ -35,10 +29,7 @@ function Home(props: Props) {
         <div>
             {validSession ? 
             <Menu/> : 
-            <Form 
-                label="Enter your 4 Digit Table ID to get Started!" 
-                tableId={tableId} setTableId={setTableId} 
-                setValidSession={setValidSession} setGlobalTableId={setGlobalTableId}></Form>}
+            <Form label="Enter your 4 Digit Table ID to get Started!" setValidSession={setValidSession} setGlobalTableId={setGlobalTableId}></Form>}
         </div>
     );
 }
