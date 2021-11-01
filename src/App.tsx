@@ -10,7 +10,7 @@ import PendingOrders from './components/PendingOrders';
 import Home from './components/Home';
 import ItemsDisplay from './components/ItemsDisplay';
 import { Item } from './components/Item';
-import Cart from './components/Cart';
+import { Cart } from './components/Cart';
 
 
 function App() {

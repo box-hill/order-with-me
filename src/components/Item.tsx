@@ -81,6 +81,7 @@ function Item(props: Props) {
             <Link to={`/menu/${category}`}><button>Back</button></Link>
             <div>
                 <div>{filteredItem === null ? null : filteredItem.name}</div>
+                <div>{filteredItem === null ? null : filteredItem.price}</div>
                 <button onClick={() => modifyQuantity('minus')}>-</button>
                 <span>Quantity: {quantity}</span>
                 <button onClick={() => modifyQuantity('plus')}>+</button>
