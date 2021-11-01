@@ -12,7 +12,6 @@ interface Props extends RouteComponentProps<MatchParams> { };
 
 function ItemsDisplay(props: Props) {
     const { category } = props.match.params;
-    console.log(category);
     const filteredItems = items.filter(item => item.category.toLowerCase() === category.toLowerCase());
 
     return (

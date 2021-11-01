@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { isCompositeComponentWithType } from 'react-dom/test-utils';
-import { JsxElement, JsxText } from 'typescript';
 
-import app from "../firebase";
 import { CartItemObj } from './Item';
 
 interface Props {
@@ -20,7 +17,6 @@ function PendingOrders(props: Props) {
   const { orders, loading } = props;
   const [seconds, setSeconds] = useState(0);
   const [sumOfOrders, setSumOfOrders] = React.useState<Array<SumOrders>>([])
-  //const [sumOfOrders, setSumOfOrders] = useState([]);
 
   useEffect(() => {
     function timer(){
@@ -44,13 +40,10 @@ function PendingOrders(props: Props) {
         const itemQuan = item.quantity;
         const itemName = item.name;
         let filteredItem = sumOrdersCopy.filter(itemCopy => itemCopy.id === itemId);
-        console.log('filtered item,' ,filteredItem);
         if(filteredItem.length === 0){
           sumOrdersCopy = [...sumOrdersCopy, {id: itemId, quantity: itemQuan, name: itemName}];
-          console.log('sum of orders', sumOrdersCopy);  
         }else{
           sumOrdersCopy = sumOrdersCopy.map(currItem => currItem.id === itemId ? {...currItem, quantity: currItem.quantity + itemQuan,} : currItem)
-          console.log('sum of orders', sumOrdersCopy);  
         }
         setSumOfOrders(sumOrdersCopy);
         })

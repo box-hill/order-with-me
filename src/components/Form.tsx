@@ -1,8 +1,4 @@
-import React, { ButtonHTMLAttributes, useEffect, useState } from 'react';
-
-import app from "../firebase";
-import { getDatabase, ref, set, child, push, onValue } from 'firebase/database';
-import { isPropertySignature } from 'typescript';
+import React, { useEffect, useState } from 'react';
 
 interface Props {
     label: string,
@@ -36,7 +32,6 @@ function Form(props: Props) {
         // check if tableId has number and alphabets only and len = 4 (allow lowercase)
         const regex = /^[a-zA-Z0-9]{4}$/;
         if(regex.test(inputId)){
-            console.log('correct table id');
             setValidSession(true);
             localStorage.setItem('tableId', inputId);
             localStorage.setItem('sessionTimeStamp', Date.now().toString(10));

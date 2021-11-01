@@ -1,10 +1,7 @@
 import React from 'react';
 import Form from './Form';
 import Menu from './Menu';
-import { useState, useEffect } from 'react';
 
-// The home page will show the menu categories if the user has already entered a table number (check localstorage session too)
-// else, the home page will show a simple form component so the user can input a table number
 
 interface Props {
     setGlobalTableId: Function,
@@ -20,7 +17,6 @@ function Home(props: Props) {
         return (
             <div>
                 Loading.... 
-                Place a loader here
             </div>
         )
     }

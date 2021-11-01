@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { RouteComponentProps } from 'react-router';
-import  { items, ItemInterface } from "./items";
-import { isExternalModuleNameRelative } from 'typescript';
+import  { items } from "./items";
+
 
 
 interface MatchParams {
@@ -40,7 +40,6 @@ function Item(props: Props) {
         else if(modifyType === 'minus') {
             setQuantity(quantity - 1);
         }
-        console.log(quantity);
     }
 
     // returns an object with the item's info 
@@ -71,7 +70,6 @@ function Item(props: Props) {
         else { // item does not exist in cart
             setCart(cart.concat({id: id, quantity: quantity, name: filteredItem!.name, price: filteredItem!.price})); 
         }
-        console.log(cart);
     }
 
     let filteredItem = returnFilteredItem(id);

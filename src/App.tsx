@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 
 import app from "./firebase";
-import { getDatabase, ref, set, child, push, onValue } from 'firebase/database';
+import { getDatabase, ref, onValue } from 'firebase/database';
 
 import './styles/style.css';
 import Navbar from './components/Navbar'
@@ -11,7 +11,7 @@ import Home from './components/Home';
 import ItemsDisplay from './components/ItemsDisplay';
 import Menu from './components/Menu';
 import Form from './components/Form';
-import { Item, CartItemObj } from './components/Item';
+import { Item } from './components/Item';
 import { Cart } from './components/Cart';
 
 
@@ -26,19 +26,15 @@ function App() {
   function retrieveSession(){
     const retrievedSession = localStorage.getItem('sessionTimeStamp');
     if(retrievedSession === null){
-        console.log('retrievedSession is null');
         localStorage.clear();
     }
     else{
         const timeNow = Date.now();
         const lastEntered = parseInt(retrievedSession);
-        console.log(timeNow, lastEntered);
         if(timeNow - lastEntered < 3.6e+6){
-            console.log('recovering previous session from within 1 hour ago');
             setValidSession(true);
-            const tableIdstring = localStorage.getItem('tableId')
+            const tableIdstring = localStorage.getItem('tableId');
             if(tableIdstring != null) setGlobalTableId(tableIdstring);
-            // TO DO: recover cart here
             let cartJSONString = localStorage.getItem('cart');
             if(cartJSONString != null){
               setCart(JSON.parse(cartJSONString));
@@ -65,12 +61,7 @@ function App() {
       const docRef = ref(db, `tables/${globalTableId}/orders`);
       onValue(docRef, (snapshot) => {
       const data = snapshot.val();
-      console.log(data);
       setOrders(data);
-      // Object.keys(data).forEach((key: string) => {
-      //   const orderArray: Array<CartItemObj> = data[key];
-      //   console.log(orderArray);
-      // });
       })
     }
   }, [validSession, globalTableId])

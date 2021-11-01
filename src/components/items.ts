@@ -1,4 +1,4 @@
-// This file contains the categories that are shown on the Home page once a valid table ID has been entered.
+// Item information
 
 export interface ItemInterface {
     category: string,
