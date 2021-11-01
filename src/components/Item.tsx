@@ -16,6 +16,8 @@ export interface CartItemObj {
     name: string,
     price: string,
     imageUrl?: string,
+    pending?: boolean,
+    orderedAt?: number,
 }
 
 interface Props extends RouteComponentProps<MatchParams> { 

@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
-//import  { items, ItemInterface } from "./items";
 import { CartItemObj } from "./Item";
-//import { isObjectBindingPattern } from 'typescript';
 
 import app from '../firebase';
-import { getDatabase, ref, set, child, push, onValue } from 'firebase/database';
+import { getDatabase, ref, set, child, push } from 'firebase/database';
 
 
 interface Props { 
@@ -52,14 +50,20 @@ export function Cart(props: Props) {
         if(!validSession){
             return;
         }
-        firebasePush();
+        let timeNowSeconds: number = Math.floor(Date.now()/1000);
 
-        function firebasePush(){
+        let cartCopy = [...cart];
+        cartCopy = cartCopy.map(order => {
+            return {...order, pending: true, orderedAt: timeNowSeconds}
+        })
+        console.log(cartCopy);
+        firebasePush(cartCopy);
+        setCart([]);
+
+        function firebasePush(cart: Array<CartItemObj>){
             // https://firebase.google.com/docs/database/web/read-and-write
             const db = getDatabase(app);
             const newOrderKey = push(child(ref(db), 'tables/tableId/orders/')).key; // create new key
-            console.log(newOrderKey);
-            // tableId should be a variable from user input (security)
             set(ref(db, `tables/${globalTableId}/orders/${newOrderKey}`), cart);
         }
     }
@@ -86,6 +90,7 @@ export function Cart(props: Props) {
                 <div>Total: {totalPrice}</div>
                 <div>Table: {globalTableId}</div>
                 <button onClick={processOrder} disabled={!validSession}>Order</button>
+                {validSession ? null : <div>Enter a table before ordering!</div>}
             </div>
         </div>
     );

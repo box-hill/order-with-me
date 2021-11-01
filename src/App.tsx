@@ -11,14 +11,14 @@ import Home from './components/Home';
 import ItemsDisplay from './components/ItemsDisplay';
 import Menu from './components/Menu';
 import Form from './components/Form';
-import { Item } from './components/Item';
+import { Item, CartItemObj } from './components/Item';
 import { Cart } from './components/Cart';
 
 
 function App() {
   const [globalTableId, setGlobalTableId] = useState('');
   const [loading, setLoading] = useState(true);
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState({});
   const [cart, setCart] = useState([]);
   const [validSession, setValidSession] = useState (false);
 
@@ -56,7 +56,7 @@ function App() {
     // whenever cart gets updated, update the localStorage cart too, so it persists
     let cartJSONString = JSON.stringify(cart);
     localStorage.setItem('cart', cartJSONString);
-  },[cart]);
+  }, [cart]);
 
   useEffect(() => {
     if(validSession === true && globalTableId !== ''){ // on
@@ -66,6 +66,11 @@ function App() {
       onValue(docRef, (snapshot) => {
       const data = snapshot.val();
       console.log(data);
+      setOrders(data);
+      // Object.keys(data).forEach((key: string) => {
+      //   const orderArray: Array<CartItemObj> = data[key];
+      //   console.log(orderArray);
+      // });
       })
     }
   }, [validSession, globalTableId])
@@ -81,7 +86,7 @@ function App() {
           <Route path ="/menu" component={Menu}/>
           <Route path = "/table" component={() => <Form label="Enter your 4 Digit Table ID to get Started!" validSession={validSession} setValidSession={setValidSession} globalTableId={globalTableId} setGlobalTableId={setGlobalTableId}></Form>}/>
           <Route exact path="/cart" component={() => <Cart cart={cart} setCart={setCart} validSession={validSession} globalTableId={globalTableId}/>}/>
-          <Route exact path="/orders" component={() => <PendingOrders/>}/>
+          <Route exact path="/orders" component={() => <PendingOrders orders={orders} loading={loading}/>}/>
         </Switch>
       </HashRouter>
     </div>
