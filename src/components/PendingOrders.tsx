@@ -33,26 +33,33 @@ function PendingOrders(props: Props) {
 
   useEffect(() => {
     let sumOrdersCopy: SumOrders[] = [];
-    Object.keys(orders).map((key: string) => {
-      const orderArray: Array<CartItemObj> = orders[key];
-      orderArray.forEach(item => {
-        const itemId = item.id;
-        const itemQuan = item.quantity;
-        const itemName = item.name;
-        let filteredItem = sumOrdersCopy.filter(itemCopy => itemCopy.id === itemId);
-        if(filteredItem.length === 0){
-          sumOrdersCopy = [...sumOrdersCopy, {id: itemId, quantity: itemQuan, name: itemName}];
-        }else{
-          sumOrdersCopy = sumOrdersCopy.map(currItem => currItem.id === itemId ? {...currItem, quantity: currItem.quantity + itemQuan,} : currItem)
-        }
-        setSumOfOrders(sumOrdersCopy);
+    try {
+      if(!(orders === null || orders.length === 0)){
+        Object.keys(orders).map((key: string) => {
+          const orderArray: Array<CartItemObj> = orders[key];
+          orderArray.forEach(item => {
+            const itemId = item.id;
+            const itemQuan = item.quantity;
+            const itemName = item.name;
+            let filteredItem = sumOrdersCopy.filter(itemCopy => itemCopy.id === itemId);
+            if(filteredItem.length === 0){
+              sumOrdersCopy = [...sumOrdersCopy, {id: itemId, quantity: itemQuan, name: itemName}];
+            }else{
+              sumOrdersCopy = sumOrdersCopy.map(currItem => currItem.id === itemId ? {...currItem, quantity: currItem.quantity + itemQuan,} : currItem)
+            }
+            setSumOfOrders(sumOrdersCopy);
+            })
         })
-    })
+      }
+    }
+    catch(error){
+      console.error(error);
+    }
   }, [orders])
 
 
   if(loading || seconds === 0) return <div>Loading... </div>
-  if(!orders) return null;
+  if(!orders) return <div>You currently have no pending orders!</div>;
 
   return (
     <div>

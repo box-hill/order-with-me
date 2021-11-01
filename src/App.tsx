@@ -18,7 +18,7 @@ import { Cart } from './components/Cart';
 function App() {
   const [globalTableId, setGlobalTableId] = useState('');
   const [loading, setLoading] = useState(true);
-  const [orders, setOrders] = useState({});
+  const [orders, setOrders] = useState(null);
   const [cart, setCart] = useState([]);
   const [validSession, setValidSession] = useState (false);
 
