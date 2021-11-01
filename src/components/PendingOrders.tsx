@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { isCompositeComponentWithType } from 'react-dom/test-utils';
 import { JsxElement, JsxText } from 'typescript';
 
 import app from "../firebase";
@@ -9,20 +10,53 @@ interface Props {
   loading: boolean,
 }
 
+interface SumOrders {
+  id: string,
+  name: string,
+  quantity: number,
+}
+
 function PendingOrders(props: Props) {
   const { orders, loading } = props;
   const [seconds, setSeconds] = useState(0);
+  const [sumOfOrders, setSumOfOrders] = React.useState<Array<SumOrders>>([])
+  //const [sumOfOrders, setSumOfOrders] = useState([]);
 
   useEffect(() => {
-    let interval = setInterval(() => {
+    function timer(){
       const secondsNum = Math.floor(Date.now()/1000);
       setSeconds(secondsNum);
-    }, 1000)
+    }
+    timer();
+    let interval = setInterval(() => timer(), 1000)
     return () => {
       clearInterval(interval);
     }
   }
   , [])
+
+  useEffect(() => {
+    let sumOrdersCopy: SumOrders[] = [];
+    Object.keys(orders).map((key: string) => {
+      const orderArray: Array<CartItemObj> = orders[key];
+      orderArray.forEach(item => {
+        const itemId = item.id;
+        const itemQuan = item.quantity;
+        const itemName = item.name;
+        let filteredItem = sumOrdersCopy.filter(itemCopy => itemCopy.id === itemId);
+        console.log('filtered item,' ,filteredItem);
+        if(filteredItem.length === 0){
+          sumOrdersCopy = [...sumOrdersCopy, {id: itemId, quantity: itemQuan, name: itemName}];
+          console.log('sum of orders', sumOrdersCopy);  
+        }else{
+          sumOrdersCopy = sumOrdersCopy.map(currItem => currItem.id === itemId ? {...currItem, quantity: currItem.quantity + itemQuan,} : currItem)
+          console.log('sum of orders', sumOrdersCopy);  
+        }
+        setSumOfOrders(sumOrdersCopy);
+        })
+    })
+  }, [orders])
+
 
   if(loading || seconds === 0) return <div>Loading... </div>
   if(!orders) return null;
@@ -33,16 +67,21 @@ function PendingOrders(props: Props) {
       {Object.keys(orders).map((key: string) => {
         const orderArray: Array<CartItemObj> = orders[key];
         return orderArray.map((order, index) => {
-          return (
-            <div key={index}>
-              <div>{order.name}</div>
-              <div>{order.quantity}</div>
-              <div>{timeDifference(seconds, order.orderedAt!)}</div>
-              <div>__________________</div>
-            </div>
-          )
+          if(order.pending){  
+            return (
+              <div key={index}>
+                <div>{order.name}</div>
+                <div>{order.quantity}</div>
+                <div>{timeDifference(seconds, order.orderedAt!)}</div>
+                <div>__________________</div>
+              </div>
+            )
+          }else{
+            return null;
+          }
         })
       })}
+      {sumOfOrders.map((item,index) => <div key={index}><span>{item.quantity}</span><span> - {item.name}</span></div>)}
     </div>
   );
 }
