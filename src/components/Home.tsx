@@ -7,13 +7,14 @@ import { useState, useEffect } from 'react';
 // else, the home page will show a simple form component so the user can input a table number
 
 interface Props {
-    setGlobalTableId: Function
+    setGlobalTableId: Function,
+    validSession: boolean,
+    setValidSession: Function,
 }
 
 function Home(props: Props) {
-    const { setGlobalTableId } = props;
+    const { setGlobalTableId, validSession, setValidSession } = props;
     const [loading, setLoading] = useState(true);
-    const [validSession, setValidSession] = useState (false);
     const [tableId, setTableId] = useState('');
 
     useEffect(() => {
@@ -34,6 +35,7 @@ function Home(props: Props) {
             if(timeNow - lastEntered < 3.6e+6){
                 console.log('recovering previous session from within 1 hour ago');
                 setValidSession(true);
+                setGlobalTableId(localStorage.getItem('tableId'));
             }
         }
         setLoading(false);

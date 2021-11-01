@@ -7,22 +7,23 @@ import { isObjectBindingPattern } from 'typescript';
 interface Props { 
     cart: Array<CartItemObj>,
     setCart: Function,
+    validSession: boolean,
+    globalTableId: string,
 };
 
 
 export function Cart(props: Props) {
-    const { cart, setCart } = props;
+    const { cart, setCart, validSession, globalTableId } = props;
     const [totalPrice, setTotalPrice] = useState('');
 
     useEffect(() => {
-        // reducer here
+        // recalcualte cart total whenever it updates
         let initialValue = 0;
         let sum = cart.reduce((prev, current) => {
             const currentValue = dollarsToCents(current.price) * current.quantity;
             return prev + currentValue;
         }, initialValue);
         setTotalPrice(centsToDollars(sum));
-        
     }, [cart])
 
     // allows direct modification of cart
@@ -35,7 +36,6 @@ export function Cart(props: Props) {
         } else if(modifyType === 'minus'){
             newQuan--;
         }
-        
         setCart([...cart].map(item => item.id === itemId ? {...item, quantity: newQuan} : item));
     }
 
@@ -43,6 +43,12 @@ export function Cart(props: Props) {
         let newCart = [...cart];
         newCart = newCart.filter(item =>  item.id !== itemId);
         setCart(newCart);
+    }
+
+    function processOrder(){
+        if(!validSession){
+            return;
+        }
     }
 
     return (
@@ -65,7 +71,8 @@ export function Cart(props: Props) {
             })}
             <div>
                 <div>Total: {totalPrice}</div>
-                <button>Order</button>
+                <div>Table: {globalTableId}</div>
+                <button onClick={processOrder}>Order</button>
             </div>
         </div>
     );

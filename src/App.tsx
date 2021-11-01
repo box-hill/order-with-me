@@ -17,6 +17,7 @@ function App() {
   const [globalTableId, setGlobalTableId] = useState('');
   const [orders, setOrders] = useState([]);
   const [cart, setCart] = useState([]);
+  const [validSession, setValidSession] = useState (false);
 
   useEffect(()=>{
     // when a user enters the website, we'll listen for order changes on firebase
@@ -42,10 +43,10 @@ function App() {
       <HashRouter basename='/'>
       <Navbar/>
         <Switch>
-          <Route exact path ="/" component={() => <Home setGlobalTableId={setGlobalTableId}/>}/>
+          <Route exact path ="/" component={() => <Home setGlobalTableId={setGlobalTableId} validSession={validSession} setValidSession={setValidSession}/>}/>
           <Route path ="/menu/:category/:id" component={(props: any) => <Item {...props} cart={cart} setCart={setCart}/>}/>
           <Route path ="/menu/:category" component={ItemsDisplay}/>
-          <Route exact path="/cart" component={() => <Cart cart={cart} setCart={setCart}/>}/>
+          <Route exact path="/cart" component={() => <Cart cart={cart} setCart={setCart} validSession={validSession} globalTableId={globalTableId}/>}/>
           <Route exact path="/orders" component={() => <PendingOrders/>}/>
         </Switch>
       </HashRouter>
