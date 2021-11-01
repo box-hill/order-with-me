@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, useState } from 'react';
+import React, { ButtonHTMLAttributes, useEffect, useState } from 'react';
 
 import app from "../firebase";
 import { getDatabase, ref, set, child, push, onValue } from 'firebase/database';
@@ -14,6 +14,18 @@ interface Props {
 function Form(props: Props) {
     const { label, validSession, setValidSession, globalTableId, setGlobalTableId } = props;
     const [tableId, setTableId] = useState('');
+    const [disableBtn, setDisableBtn] = useState(true);
+
+    useEffect(() => {
+        const regex = /^[a-zA-Z0-9]{4}$/;
+        if(regex.test(tableId)){
+            setDisableBtn(false);
+        }
+        else{
+            setDisableBtn(true);
+        }
+    }, [tableId])
+
     function onChangeHandler(e: React.FormEvent<HTMLInputElement>){
         setTableId(e.currentTarget.value);
     }
@@ -41,7 +53,7 @@ function Form(props: Props) {
       <form>
           <label>{validSession ? validLabel : label}</label>
           <input type="text" minLength={4} maxLength={4} onChange={onChangeHandler} value={tableId} />
-          <button onClick={JoinTable}>{validSession ? 'Change Table' : 'Join Table'}</button>
+          <button onClick={JoinTable} disabled={disableBtn}>{validSession ? 'Change Table' : 'Join Table'}</button>
       </form>
     );
 }

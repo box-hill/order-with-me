@@ -85,7 +85,7 @@ export function Cart(props: Props) {
             <div>
                 <div>Total: {totalPrice}</div>
                 <div>Table: {globalTableId}</div>
-                <button onClick={processOrder}>Order</button>
+                <button onClick={processOrder} disabled={!validSession}>Order</button>
             </div>
         </div>
     );
