@@ -15,11 +15,38 @@ import { Cart } from './components/Cart';
 
 function App() {
   const [globalTableId, setGlobalTableId] = useState('');
+  const [loading, setLoading] = useState(true);
   const [orders, setOrders] = useState([]);
   const [cart, setCart] = useState([]);
   const [validSession, setValidSession] = useState (false);
 
-  useEffect(()=>{
+  // check localStorage for a valid session
+  function retrieveSession(){
+    const retrievedSession = localStorage.getItem('sessionTimeStamp');
+    if(retrievedSession === null){
+        console.log('retrievedSession is null');
+    }
+    else{
+        const timeNow = Date.now();
+        const lastEntered = parseInt(retrievedSession);
+        console.log(timeNow, lastEntered);
+        if(timeNow - lastEntered < 3.6e+6){
+            console.log('recovering previous session from within 1 hour ago');
+            setValidSession(true);
+            const tableIdstring = localStorage.getItem('tableId')
+            if(tableIdstring != null) setGlobalTableId(tableIdstring);
+            // TO DO: recover cart here
+            let cartJSONString = localStorage.getItem('cart');
+            if(cartJSONString != null){
+              setCart(JSON.parse(cartJSONString));
+            }
+        }
+    }
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    retrieveSession();
     // when a user enters the website, we'll listen for order changes on firebase
     const db = getDatabase(app);
     // listens actively for a change in database. 
@@ -32,10 +59,11 @@ function App() {
     // this way we cover the scenario where they change table Id. 
   },[])
 
-  useEffect(()=>{
-    // whenever cart gets updated, we'll update accordingly
-    // we will also be listening globally for order changes (e.g. other users adding orders to firebase)
-    console.log('cart updated');
+  useEffect(() => {
+    // whenever cart gets updated, we'll update the localStorage too, that way if the user refreshes, the items are saved
+    let cartJSONString = JSON.stringify(cart);
+    console.log(cartJSONString);
+    localStorage.setItem('cart', cartJSONString);
   },[cart]);
 
   return (
@@ -43,7 +71,7 @@ function App() {
       <HashRouter basename='/'>
       <Navbar/>
         <Switch>
-          <Route exact path ="/" component={() => <Home setGlobalTableId={setGlobalTableId} validSession={validSession} setValidSession={setValidSession}/>}/>
+          <Route exact path ="/" component={() => <Home setGlobalTableId={setGlobalTableId} validSession={validSession} setValidSession={setValidSession} loading={loading}/>}/>
           <Route path ="/menu/:category/:id" component={(props: any) => <Item {...props} cart={cart} setCart={setCart}/>}/>
           <Route path ="/menu/:category" component={ItemsDisplay}/>
           <Route exact path="/cart" component={() => <Cart cart={cart} setCart={setCart} validSession={validSession} globalTableId={globalTableId}/>}/>

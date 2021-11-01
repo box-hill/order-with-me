@@ -10,36 +10,17 @@ interface Props {
     setGlobalTableId: Function,
     validSession: boolean,
     setValidSession: Function,
+    loading: boolean,   
 }
 
 function Home(props: Props) {
-    const { setGlobalTableId, validSession, setValidSession } = props;
-    const [loading, setLoading] = useState(true);
+    const { setGlobalTableId, validSession, setValidSession, loading } = props;
+
     const [tableId, setTableId] = useState('');
 
-    useEffect(() => {
-        retrieveSession();
-
-    },[]);
-
-    // check localStorage for a valid session
-    function retrieveSession(){
-        const retrievedSession = localStorage.getItem('sessionTimeStamp');
-        if(retrievedSession === null){
-            console.log('retrievedSession is null');
-        }
-        else{
-            const timeNow = Date.now();
-            const lastEntered = parseInt(retrievedSession);
-            console.log(timeNow, lastEntered);
-            if(timeNow - lastEntered < 3.6e+6){
-                console.log('recovering previous session from within 1 hour ago');
-                setValidSession(true);
-                setGlobalTableId(localStorage.getItem('tableId'));
-            }
-        }
-        setLoading(false);
-    }
+    // useEffect(() => {
+    //     retrieveSession();
+    // },[]);
     
     if(loading){
         return (
@@ -61,5 +42,8 @@ function Home(props: Props) {
         </div>
     );
 }
-  
+
+
+
+
 export default Home;
