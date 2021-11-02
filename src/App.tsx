@@ -11,6 +11,7 @@ import Home from './components/Home';
 import ItemsDisplay from './components/ItemsDisplay';
 import Menu from './components/Menu';
 import Form from './components/Form';
+import Kitchen from './components/Kitchen';
 import { Item, CartItemObj } from './components/Item';
 import { Cart } from './components/Cart';
 
@@ -58,9 +59,8 @@ function App() {
   }, [cart]);
 
   useEffect(() => {
-    if(validSession === true && globalTableId !== ''){ // on
+    if(validSession === true && globalTableId !== ''){ 
       const db = getDatabase(app);
-      // listens actively for a change in database. 
       const docRef = ref(db, `tables/${globalTableId}/orders`);
       onValue(docRef, (snapshot) => {
       const data = snapshot.val();
@@ -104,6 +104,7 @@ function App() {
           <Route path = "/table" component={() => <Form label="Enter your 4 Digit Table ID to get Started!" validSession={validSession} setValidSession={setValidSession} globalTableId={globalTableId} setGlobalTableId={setGlobalTableId}></Form>}/>
           <Route exact path="/cart" component={() => <Cart cart={cart} setCart={setCart} validSession={validSession} globalTableId={globalTableId}/>}/>
           <Route exact path="/orders" component={() => <PendingOrders orders={orders} loading={loading} loadingOrder={loadingOrder} pendingOrders={pendingOrders}/>}/>
+          <Route exact path="/kitchen" component={Kitchen}/>
         </Switch>
       </HashRouter>
     </div>
