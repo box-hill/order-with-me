@@ -1,16 +1,5 @@
-$divColor: rgb(112, 112, 112);
+@import './loader';
 
 body {
     margin: 0;
 }
-
-input {
-    &:focus{
-        outline: none;
-    }
-}
-
-div {
-    background: $divColor; 
-}
-
