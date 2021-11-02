@@ -6,7 +6,7 @@ import { getDatabase, ref, onValue } from 'firebase/database';
 
 import './styles/style.css';
 import Navbar from './components/Navbar'
-import PendingOrders from './components/PendingOrders';
+import { PendingOrders } from './components/PendingOrders';
 import Home from './components/Home';
 import ItemsDisplay from './components/ItemsDisplay';
 import Menu from './components/Menu';

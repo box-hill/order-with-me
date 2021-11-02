@@ -15,7 +15,7 @@ interface SumOrders {
   quantity: number,
 }
 
-function PendingOrders(props: Props) {
+export function PendingOrders(props: Props) {
   const { orders, loading, loadingOrder, pendingOrders } = props;
   const [seconds, setSeconds] = useState(0);
   const [sumOfOrders, setSumOfOrders] = React.useState<Array<SumOrders>>([])
@@ -90,7 +90,7 @@ function PendingOrders(props: Props) {
   );
 }
 
-function timeDifference(a:number, b:number){
+export function timeDifference(a:number, b:number){
   let timeDif = a - b;
   if(timeDif >= 6000) return '99:99';
   const minutes = Math.floor(timeDif/60);
@@ -103,4 +103,4 @@ function timeDifference(a:number, b:number){
   return minutesString + ':' + secondsString;
 }
 
-export default PendingOrders;
+
