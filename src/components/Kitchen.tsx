@@ -105,8 +105,9 @@ function Kitchen() {
                 return (
                     <div key={order.uid}>
                         <span>{order.name}</span>
-                        <span>---- {order.quantity}</span>
-                        <span>---- {timeDifference(seconds, order.orderedAt!)}</span>
+                        <span> ---- {order.quantity}</span>
+                        <span> ---- {order.tableId}</span>
+                        <span> ---- {timeDifference(seconds, order.orderedAt!)}</span>
                         <button onClick={removeItem} data-key={order.uid}>Completed</button>
                     </div>
                 );
