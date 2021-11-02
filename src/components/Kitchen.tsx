@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import app from "../firebase";
-import { getDatabase, ref, onValue, set } from 'firebase/database';
+import { getDatabase, ref, onValue, set, update } from 'firebase/database';
 import { timeDifference } from './PendingOrders';
 
 interface OrdersArray {
@@ -73,8 +73,7 @@ function Kitchen() {
         }
     }, [orders])
 
-    function removeItem(e: any){
-        
+    function completeOrder(e: any){
         try{
             const uid = e.target.getAttribute('data-key');
             // split unique id into tableId, orderId and itemId
@@ -88,12 +87,12 @@ function Kitchen() {
                 const arr: Array<Order> = ordersObj[tableId]['orders'][orderId];
                 const filteredOrder = arr.filter(item => item.id === itemId)[0];
                 const index = arr.indexOf(filteredOrder);
-                set(ref(db, `tables/${tableId}/orders/${orderId}/${index}`), {...filteredOrder, pending: false})
+                //set(ref(db, `tables/${tableId}/orders/${orderId}/${index}`), {...filteredOrder, pending: false})
+                update(ref(db, `tables/${tableId}/orders/${orderId}/${index}`), {pending: false})
             }
         }catch(error){
             console.error(error);
         }
-
     }
 
     if(loading || seconds === 0){
@@ -108,7 +107,7 @@ function Kitchen() {
                         <span> ---- {order.quantity}</span>
                         <span> ---- {order.tableId}</span>
                         <span> ---- {timeDifference(seconds, order.orderedAt!)}</span>
-                        <button onClick={removeItem} data-key={order.uid}>Completed</button>
+                        <button onClick={completeOrder} data-key={order.uid}>Completed</button>
                     </div>
                 );
             })}
