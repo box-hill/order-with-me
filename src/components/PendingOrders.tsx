@@ -5,6 +5,8 @@ import { CartItemObj } from './Item';
 interface Props {
   orders: any,
   loading: boolean,
+  loadingOrder: boolean,
+  pendingOrders: any,
 }
 
 interface SumOrders {
@@ -14,7 +16,7 @@ interface SumOrders {
 }
 
 function PendingOrders(props: Props) {
-  const { orders, loading } = props;
+  const { orders, loading, loadingOrder, pendingOrders } = props;
   const [seconds, setSeconds] = useState(0);
   const [sumOfOrders, setSumOfOrders] = React.useState<Array<SumOrders>>([])
 
@@ -41,14 +43,16 @@ function PendingOrders(props: Props) {
             const itemId = item.id;
             const itemQuan = item.quantity;
             const itemName = item.name;
-            let filteredItem = sumOrdersCopy.filter(itemCopy => itemCopy.id === itemId);
+            if(item.pending === true){
+              let filteredItem = sumOrdersCopy.filter(itemCopy => itemCopy.id === itemId);
             if(filteredItem.length === 0){
               sumOrdersCopy = [...sumOrdersCopy, {id: itemId, quantity: itemQuan, name: itemName}];
             }else{
               sumOrdersCopy = sumOrdersCopy.map(currItem => currItem.id === itemId ? {...currItem, quantity: currItem.quantity + itemQuan,} : currItem)
             }
             setSumOfOrders(sumOrdersCopy);
-            })
+            }
+          })
         })
       }
     }
@@ -58,8 +62,8 @@ function PendingOrders(props: Props) {
   }, [orders])
 
 
-  if(loading || seconds === 0) return <div>Loading... </div>
-  if(!orders) return <div>You currently have no pending orders!</div>;
+  if(loading || loadingOrder || seconds === 0 ) return <div>Loading... </div>
+  if(orders === null) return <div>You currently have no pending orders!</div>;
 
   return (
     <div>
