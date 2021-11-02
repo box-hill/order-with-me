@@ -103,7 +103,7 @@ function App() {
           <Route path ="/menu" component={Menu}/>
           <Route path = "/table" component={() => <Form label="Enter your 4 Digit Table ID to get Started!" validSession={validSession} setValidSession={setValidSession} globalTableId={globalTableId} setGlobalTableId={setGlobalTableId}></Form>}/>
           <Route exact path="/cart" component={() => <Cart cart={cart} setCart={setCart} validSession={validSession} globalTableId={globalTableId}/>}/>
-          <Route exact path="/orders" component={() => <PendingOrders orders={orders} loading={loading} loadingOrder={loadingOrder} pendingOrders={pendingOrders}/>}/>
+          <Route exact path="/orders" component={() => <PendingOrders orders={orders} loading={loading} loadingOrder={loadingOrder} pendingOrders={pendingOrders} validSession={validSession}/>}/>
           <Route exact path="/kitchen" component={Kitchen}/>
         </Switch>
       </HashRouter>

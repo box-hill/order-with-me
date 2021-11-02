@@ -7,6 +7,7 @@ interface Props {
   loading: boolean,
   loadingOrder: boolean,
   pendingOrders: any,
+  validSession: boolean,
 }
 
 interface SumOrders {
@@ -16,7 +17,7 @@ interface SumOrders {
 }
 
 export function PendingOrders(props: Props) {
-  const { orders, loading, loadingOrder, pendingOrders } = props;
+  const { orders, loading, loadingOrder, validSession, pendingOrders } = props;
   const [seconds, setSeconds] = useState(0);
   const [sumOfOrders, setSumOfOrders] = React.useState<Array<SumOrders>>([])
 
@@ -61,7 +62,7 @@ export function PendingOrders(props: Props) {
     }
   }, [orders])
 
-
+  if(!validSession) return <div>Enter a table to get started!</div>
   if(loading || loadingOrder || seconds === 0 ) return <div>Loading... </div>
   if(orders === null) return <div>You currently have no pending orders!</div>;
 

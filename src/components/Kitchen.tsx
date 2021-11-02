@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import app from "../firebase";
-import { getDatabase, ref, onValue } from 'firebase/database';
+import { getDatabase, ref, onValue, set } from 'firebase/database';
 import { timeDifference } from './PendingOrders';
 
 interface OrdersArray {
@@ -17,6 +17,7 @@ interface Order{
     pending: boolean,
     price: string,
 }
+
 function Kitchen() {
     const [loading, setLoading] = useState(true);
     const [orders, setOrders] = useState(null);
@@ -51,7 +52,6 @@ function Kitchen() {
 
     // data structure for orders: tables/*tableId*/orders/*orderId*/ArrayOfOrders/Item
     // listed elements are tracked by combining: tableId(4) + orderId(20) + itemId(varying len) 
-
     useEffect(() => {
         if(orders != null){
             setLoading(false);
@@ -60,9 +60,11 @@ function Kitchen() {
                 const ordersArray: OrdersArray = orders[tableID]['orders'];
                 Object.keys(ordersArray).map((orderID: string) => {
                     ordersArray[orderID].forEach(item => {
-                        item.tableId = tableID;
-                        item.uid = tableID + orderID + item.id;
-                        ordersArr = ordersArr === null ? [item] : [...ordersArr, item];
+                        if(item.pending){
+                            item.tableId = tableID;
+                            item.uid = tableID + orderID + item.id;
+                            ordersArr = ordersArr === null ? [item] : [...ordersArr, item];
+                        }
                     })
                 })
             })
@@ -70,6 +72,29 @@ function Kitchen() {
             console.log(ordersArr);
         }
     }, [orders])
+
+    function removeItem(e: any){
+        
+        try{
+            const uid = e.target.getAttribute('data-key');
+            // split unique id into tableId, orderId and itemId
+            const tableId = uid.slice(0, 4);
+            const orderId = uid.slice(4, 24);
+            const itemId = uid.slice(24, uid.length);
+            const db = getDatabase(app);
+            // set the pending status as false for that specific item in the order
+            if(orders != null){
+                let ordersObj = orders;
+                const arr: Array<Order> = ordersObj[tableId]['orders'][orderId];
+                const filteredOrder = arr.filter(item => item.id === itemId)[0];
+                const index = arr.indexOf(filteredOrder);
+                set(ref(db, `tables/${tableId}/orders/${orderId}/${index}`), {...filteredOrder, pending: false})
+            }
+        }catch(error){
+            console.error(error);
+        }
+
+    }
 
     if(loading || seconds === 0){
         return <div>Loading...</div>
@@ -82,6 +107,7 @@ function Kitchen() {
                         <span>{order.name}</span>
                         <span>---- {order.quantity}</span>
                         <span>---- {timeDifference(seconds, order.orderedAt!)}</span>
+                        <button onClick={removeItem} data-key={order.uid}>Completed</button>
                     </div>
                 );
             })}
