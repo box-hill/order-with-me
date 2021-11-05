@@ -19,10 +19,6 @@ const categories: Category[] = [
         imgUrl: "#",
     },
     {
-        name: "Sets",
-        imgUrl: "#",
-    },
-    {
         name: "Dessert",
         imgUrl: "#",
     },
