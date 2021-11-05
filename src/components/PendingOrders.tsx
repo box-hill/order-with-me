@@ -63,7 +63,7 @@ export function PendingOrders(props: Props) {
   }, [orders])
 
   if(!validSession) return <div>Enter a table to get started!</div>
-  if(loading || loadingOrder || seconds === 0 ) return <Loader/>;
+  if(loading || loadingOrder || seconds === 0) return <Loader/>;
   if(orders === null) return <div>You currently have no pending orders!</div>;
 
   return (

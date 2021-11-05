@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
 /* Everything scales off of this! */
 .loader {
   font-family: 'Raleway', sans-serif;
@@ -9,12 +10,10 @@
 *:before {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
 }
 
 .card {
-  background: #ffffff;
+  background: #EEEEEE;
   float: left;
   font-size: 16px;
   left: 50%;
@@ -262,7 +261,53 @@
   right: 0;
 }
 
+* {
+  font-family: 'Open Sans', Helvetica, sans-serif;
+}
+
 body {
   margin: 0;
+}
+
+nav {
+  font-size: 25px;
+  font-weight: 600;
+  height: 63px;
+  width: 100%;
+  background-color: #222831;
+  position: fixed;
+}
+
+nav ul {
+  list-style: none;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: #EEEEEE;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+nav a:hover {
+  color: #FF524A;
+}
+
+.main-content {
+  height: 100vh;
+  padding-top: 63px;
+  background-color: #EEEEEE;
 }
 /*# sourceMappingURL=style.css.map */

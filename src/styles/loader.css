@@ -9,8 +9,6 @@
 *:before {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
 }
 
 .card {

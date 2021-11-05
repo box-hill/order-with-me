@@ -96,6 +96,7 @@ function App() {
     <div className='app'>
       <HashRouter basename='/'>
       <Navbar/>
+        <div className='main-content'>
         <Switch>
           <Route exact path ="/" component={() => <Home setGlobalTableId={setGlobalTableId} validSession={validSession} setValidSession={setValidSession} loading={loading}/>}/>
           <Route path ="/menu/:category/:id" component={(props: any) => <Item {...props} cart={cart} setCart={setCart}/>}/>
@@ -106,6 +107,7 @@ function App() {
           <Route exact path="/orders" component={() => <PendingOrders orders={orders} loading={loading} loadingOrder={loadingOrder} pendingOrders={pendingOrders} validSession={validSession}/>}/>
           <Route exact path="/kitchen" component={Kitchen}/>
         </Switch>
+        </div>
       </HashRouter>
     </div>
   );

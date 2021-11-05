@@ -1,5 +1,50 @@
-@import './loader';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import './variables.scss';
+@import './loader.scss';
+@import './navbar.scss';
 
+
+$nav-font-size: 25px;
+$nav-height: 63px;
+
+* {
+    font-family: 'Open Sans', Helvetica, sans-serif
+}
 body {
     margin: 0;
+}
+
+// nav
+nav {
+    font-size: $nav-font-size;
+    font-weight: 600;
+    height: $nav-height;
+    width: 100%;
+    background-color: $color1;
+    position: fixed;
+
+    ul {
+        list-style: none;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    a {
+        text-decoration: none;
+        color: $color4;
+        transition: all 0.3s ease;
+        &:hover {
+            color: $color5;
+        }
+    }
+}
+
+// main contet
+.main-content {
+    height: 100vh;
+    padding-top: $nav-height;
+    background-color: $color4;
 }
