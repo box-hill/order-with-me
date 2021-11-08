@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/order-with-me/static/css/main.b3492578.chunk.css",
-    "main.js": "/order-with-me/static/js/main.2c295e9a.chunk.js",
-    "main.js.map": "/order-with-me/static/js/main.2c295e9a.chunk.js.map",
+    "main.js": "/order-with-me/static/js/main.e5c2532d.chunk.js",
+    "main.js.map": "/order-with-me/static/js/main.e5c2532d.chunk.js.map",
     "runtime-main.js": "/order-with-me/static/js/runtime-main.03f127d3.js",
     "runtime-main.js.map": "/order-with-me/static/js/runtime-main.03f127d3.js.map",
     "static/js/2.c5c7f408.chunk.js": "/order-with-me/static/js/2.c5c7f408.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.03f127d3.js",
     "static/js/2.c5c7f408.chunk.js",
     "static/css/main.b3492578.chunk.css",
-    "static/js/main.2c295e9a.chunk.js"
+    "static/js/main.e5c2532d.chunk.js"
   ]
 }
