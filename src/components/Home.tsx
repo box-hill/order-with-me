@@ -22,7 +22,7 @@ function Home(props: Props) {
     }
 
     return (
-        <div>
+        <div className="fill-screen">
             {validSession ? 
             <Menu/> : 
             <Form label="Enter your 4 Digit Table ID to get Started!" setValidSession={setValidSession} setGlobalTableId={setGlobalTableId}></Form>}

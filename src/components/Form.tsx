@@ -45,11 +45,15 @@ function Form(props: Props) {
     const validLabel = 'Current Table: ' + globalTableId;
 
     return (
-      <form className="form-table" style={{backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('./img/shopfront.jpg')`}}>
-          <label>{validSession ? validLabel : label}</label>
-          <input type="text" minLength={4} maxLength={4} onChange={onChangeHandler} value={tableId} />
-          <button onClick={JoinTable} disabled={disableBtn}>{validSession ? 'Change Table' : 'Join Table'}</button>
-      </form>
+        <div className="fill-screen">   
+            <form className="form-table" style={{backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('./img/shopfront.jpg')`}}>
+                <label>{validSession ? validLabel : label}</label>
+                <div>
+                    <input type="text" minLength={4} maxLength={4} onChange={onChangeHandler} value={tableId} />
+                    <button onClick={JoinTable} disabled={disableBtn}>{validSession ? 'Change Table' : 'Join Table'}</button>
+                </div>
+            </form>
+        </div>
     );
 }
   
