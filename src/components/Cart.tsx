@@ -69,25 +69,34 @@ export function Cart(props: Props) {
     }
 
     return (
-        <div>
-            {cart.map((item, index) => {
-                let itemPrice = dollarsToCents(item.price);
-                return(
-                    <div key={index}>
-                        <div>{item.name}</div>
-                        <div>{item.price}</div>
-                        <div>
-                            <button onClick={() => modifyCart('minus', item.id)} disabled={item.quantity === 1}>-</button>
-                            <div>Quantity: {item.quantity}</div>
-                            <button onClick={() => modifyCart('plus', item.id)}>+</button>
+        <div className='cart-content'>
+            <div className='cart-container'>
+                {cart.map((item, index) => {
+                    let itemPrice = dollarsToCents(item.price);
+                    return(
+                        <div key={index} className='cart-item-view'>
+                            <img src={item.imageUrl} alt={item.name}/>
+                            <div className='cart-item-info'>
+                                <div>{item.name}</div>
+                                <div>{item.price}</div>
+                            </div>
+                            <div className='item-buttons-container'>
+                                <div className='item-buttons'>
+                                    <button onClick={() => modifyCart('minus', item.id)} disabled={item.quantity === 1}>-</button>
+                                    <div>Quantity: {item.quantity}</div>
+                                    <button onClick={() => modifyCart('plus', item.id)}>+</button>
+                                </div>
+                            </div>
+                            <div>
+                                <button className='remove-button' onClick={() => removeItemFromCart(item.id)}>Remove Item</button>
+                            </div>
+                            <div>{centsToDollars(itemPrice*item.quantity)}</div>
                         </div>
-                        <button onClick={() => removeItemFromCart(item.id)}>Remove Item</button>
-                        <div>{centsToDollars(itemPrice*item.quantity)}</div>
-                    </div>
-                )
-            })}
-            <div>
-                <div>Total: {totalPrice}</div>
+                    )
+                })}
+            </div>
+            <div className='checkout-info'>
+                <div>Total: <span>{totalPrice}</span></div>
                 <div>Table: {globalTableId}</div>
                 <button onClick={processOrder} disabled={!validSession}>Order</button>
                 {validSession ? null : <div>Enter a table before ordering!</div>}

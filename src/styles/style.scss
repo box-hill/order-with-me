@@ -17,6 +17,21 @@ $nav-height: 63px;
     height: 100%;
 }
 
+@mixin blackWhiteBtn {
+    @include flexCenter();
+        background: black;  
+        color: white;
+        font-size: 20px;
+        font-weight: 700;
+        border-style: none;
+        &:hover {
+            color: $color4;
+        }
+        &:disabled {
+            background-color: gray;
+        }
+}
+
 * {
     font-family: 'Open Sans', Helvetica, sans-serif
 }
@@ -236,49 +251,96 @@ nav {
 .item-view {
     @include flexCenter();
     gap: 20px;
+    margin: 20px;
     font-size: 20px;
-    .item-info {
-        @include flexCenter();
-        flex-direction: column;
-    }
     img {
         width: 200px;
         height: 200px;
     }
-    button {
-        @include flexCenter();
-        background: black;  
-        color: white;
-        font-size: 20px;
-        font-weight: 700;
-        border-style: none;
-        &:hover {
-            color: $color4;
-        }
-        &:disabled {
-            background-color: gray;
-        }
-    }
-    .item-buttons-container {
+    .item-info {
         @include flexCenter();
         flex-direction: column;
-        gap: 20px;
-        .item-buttons {
-            @include flexCenter();
-            flex-direction: row;
-            flex-wrap: nowrap;
-            gap: 10px;
-            button {
-                width: 25px;
-                height: 25px;
-            }
+    }
+    button {
+        @include blackWhiteBtn();
+    }
+}
+
+.item-buttons-container {
+    @include flexCenter();
+    flex-direction: column;
+    gap: 20px;
+    button {
+        @include blackWhiteBtn();
+    }
+    .item-buttons {
+        @include flexCenter();
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 10px;
+        button {
+            width: 25px;
+            height: 25px;
         }
     }
 }
+
 
 @media screen and (max-width: 600px) {
     .item-view {
         flex-direction: column;
     }
 }
+
+.cart-content {
+    min-height: 100vh;
+    width: 100%;
+    font-size: 20px;
+    padding-top: $nav-height;
+    background-color: $color4;
+    @include flexCenter();
+    flex-direction: column;
+    .cart-container {
+        max-width: 1000px;
+        margin: 20px;
+        border-bottom: 1px solid rgb(0, 0, 0);
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        img {
+            width: 150px;
+            height: 150px;
+            margin: 5px;
+        }
+        .cart-item-view {
+            display: grid;
+            grid-template-rows: 1fr;
+            grid-template-columns: 200px repeat(4, 1fr);
+            div {
+                @include flexCenter();
+            }
+            .cart-item-info {
+                flex-direction: column;
+            }
+            .remove-button {
+                @include blackWhiteBtn();
+            }
+        }
+    }
+    .checkout-info {
+        @include flexCenter();
+        flex-direction: column;
+        padding: 10px;
+        gap: 2px;
+        div > span {
+            font-weight: 700;
+        }
+        button {
+            @include blackWhiteBtn();
+            padding: 20px;
+        }
+    }
+}
+
+
 

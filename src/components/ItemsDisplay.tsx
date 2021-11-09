@@ -16,21 +16,21 @@ function ItemsDisplay(props: Props) {
 
     return (
         <div className='fill-screen'>
-        <div className='items-container'>
-        {filteredItems.map((item:ItemInterface, index) => {
-            return (
-                <Link key={index} to={`/menu/${category}/${item.id}`}>
-                    <div className='item-container'>    
-                        <img className='item-img' src={item.imgUrl} alt={item.name}/>
-                        <div className='text-container'>
-                            <div>{item.name}</div>
-                            <div>{item.price}</div>
+            <div className='items-container'>
+            {filteredItems.map((item:ItemInterface, index) => {
+                return (
+                    <Link key={index} to={`/menu/${category}/${item.id}`}>
+                        <div className='item-container'>    
+                            <img className='item-img' src={item.imgUrl} alt={item.name}/>
+                            <div className='text-container'>
+                                <div>{item.name}</div>
+                                <div>{item.price}</div>
+                            </div>
                         </div>
-                    </div>
-                </Link>    
-            );
-        })}
-        </div>
+                    </Link>    
+                );
+            })}
+            </div>
         </div>
     );
 }

@@ -65,10 +65,10 @@ function Item(props: Props) {
 
         if(filteredCart.length > 0){ // item exists in cart
             const newQuan = filteredCart[0].quantity + quantity;
-            setCart([...cart].map(item => item.id === id ? {...item, quantity: newQuan, name: filteredItem!.name, price: filteredItem!.price} : item));
+            setCart([...cart].map(item => item.id === id ? {...item, quantity: newQuan, name: filteredItem!.name, price: filteredItem!.price, imageUrl:filteredItem!.imgUrl} : item));
         }
         else { // item does not exist in cart
-            setCart(cart.concat({id: id, quantity: quantity, name: filteredItem!.name, price: filteredItem!.price})); 
+            setCart(cart.concat({id: id, quantity: quantity, name: filteredItem!.name, price: filteredItem!.price, imageUrl:filteredItem!.imgUrl})); 
         }
     }
 
