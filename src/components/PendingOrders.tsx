@@ -63,7 +63,7 @@ export function PendingOrders(props: Props) {
   }, [orders])
 
   if(!validSession) return <div className='main-content'>Enter a table to get started!</div>
-  if(loading || loadingOrder || seconds === 0) return (
+  if(loading || loadingOrder || seconds === 0 || true) return (
     <div className='main-content'>
       <Loader/>
     </div>
@@ -92,8 +92,8 @@ export function PendingOrders(props: Props) {
             }
           })
         })}
-        {sumOfOrders.map((item,index) => <div key={index}><span>{item.quantity}</span><span> - {item.name}</span></div>)}
       </div>
+      <div>{sumOfOrders.map((item,index) => <div key={index}><span>{item.quantity}</span><span> - {item.name}</span></div>)}</div>
     </div>
   );
 }

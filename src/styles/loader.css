@@ -12,17 +12,11 @@
 }
 
 .card {
-  background: #ffffff;
-  float: left;
+  background: #EEEEEE;
   font-size: 16px;
-  left: 50%;
   margin: 0 auto;
   padding: 24px 32px;
-  position: relative;
   text-align: center;
-  top: 50%;
-  -webkit-transform: translateY(-50%) translateX(-50%);
-  transform: translateY(-50%) translateX(-50%);
   width: 320px;
 }
 

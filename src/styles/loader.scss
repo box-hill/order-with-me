@@ -1,4 +1,4 @@
-
+@import './variables.scss';
 $master: 16px; /* Everything scales off of this! */
 
 $cardbackground: #ffffff;
@@ -26,16 +26,14 @@ $margin: ($master / 2) 0 ($master + ($master / 2)) 0;
 	// background: $cardbackground;
 	background: $color4;
 	//border-radius: 0.15em;
-	float: left;
 	font-size: $master;
-	left: 50%;
+
 	margin: 0 auto;
 	padding: ($master + ($master / 2)) ($master * 2);
-	position: relative;
+
 	text-align: center;
-	top: 50%;
-	-webkit-transform: translateY(-50%) translateX(-50%);
-					transform: translateY(-50%) translateX(-50%);
+
+
 	width: ($master * 20);
 	
 	
