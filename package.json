@@ -1,6 +1,6 @@
 {
   "name": "order-with-me",
-  "homepage": ".",
+  "homepage": "http://box-hill.github.io/order-with-me",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
