@@ -20,7 +20,7 @@ function Form(props: Props) {
         else{
             setDisableBtn(true);
         }
-    }, [tableId])
+    }, [tableId]);
 
     function onChangeHandler(e: React.FormEvent<HTMLInputElement>){
         setTableId(e.currentTarget.value);
@@ -45,14 +45,14 @@ function Form(props: Props) {
     const validLabel = 'Current Table: ' + globalTableId;
 
     return (
-        <div className="main-content">   
+        <div className="main-content">
             <form className="form-table" style={{backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('./img/shopfront.jpg')`}}>
                 <label>{validSession ? validLabel : label}</label>
                 <div>
                     <input type="text" minLength={4} maxLength={4} onChange={onChangeHandler} value={tableId} />
                     <button onClick={JoinTable} disabled={disableBtn}>{validSession ? 'Change Table' : 'Join Table'}</button>
                 </div>
-            </form>
+            </form> 
         </div>
     );
 }

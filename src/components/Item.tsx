@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
 import { RouteComponentProps } from 'react-router';
 import  { items } from "./items";
-
-
 
 interface MatchParams {
     category: string;

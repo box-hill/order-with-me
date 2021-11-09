@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { DiagnosticCategory } from 'typescript';
 import  { Category } from "./categories";
 const { categories } = require("./categories");
 

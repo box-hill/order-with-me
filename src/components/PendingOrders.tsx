@@ -63,7 +63,7 @@ export function PendingOrders(props: Props) {
   }, [orders])
 
   if(!validSession) return <div className='main-content'>Enter a table to get started!</div>
-  if(loading || loadingOrder || seconds === 0 || true) return (
+  if(loading || loadingOrder || seconds === 0) return (
     <div className='main-content'>
       <Loader/>
     </div>
