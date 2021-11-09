@@ -163,15 +163,19 @@ nav {
     background-position: center center;
     color: $color4;
     font-size: 25px;
+    label {
+        padding: 5px;
+        margin-bottom: 5px;
+    }
     input {
         background: none;
         border-style: none;
         border-bottom: 1px solid white;
         outline: none;
-        font-size: inherit;        min-width: 400px;
-        max-width: 400px;
+        font-size: inherit;        
+        min-width: 150px;
+        max-width: 150px;
         color: inherit;
-        width: 150px;
         text-align: center;
     }
     button {
