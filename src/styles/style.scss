@@ -144,6 +144,7 @@ nav {
 
 .form-table {
     @include fillScreen();
+    width: 100vw;
     @include flexCenter();
     flex-direction: column;
     background-size: cover;
@@ -162,7 +163,6 @@ nav {
         width: 150px;
         text-align: center;
     }
-
     button {
         background: black;
         border-style: none;
@@ -178,12 +178,16 @@ nav {
     }
 }
 
+
 .fill-screen {
     @include fillScreen();
 }
 
 .items-container {
     @include flexCenter();
+    align-items: flex-start;
+    width: 100%;
+    padding-top: $nav-height + 10px;
     flex-wrap: wrap;
     max-width: 1500px;
     gap: 10px;
@@ -213,14 +217,68 @@ nav {
         }
     }
     .item-img {
-        width: 150px;
-        height: 150px;
+        width: 200px;
+        height: 200px;
     }   
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 450px) {
     .items-container a {
-       min-width: 320px;
-       max-width: 320px;
+        max-width: 90%;
+        min-width: 90%
+    }
+    .item-img {
+        max-width: 150px;
+        max-height: 150px;
+    }   
+}
+
+.item-view {
+    @include flexCenter();
+    gap: 20px;
+    font-size: 20px;
+    .item-info {
+        @include flexCenter();
+        flex-direction: column;
+    }
+    img {
+        width: 200px;
+        height: 200px;
+    }
+    button {
+        @include flexCenter();
+        background: black;  
+        color: white;
+        font-size: 20px;
+        font-weight: 700;
+        border-style: none;
+        &:hover {
+            color: $color4;
+        }
+        &:disabled {
+            background-color: gray;
+        }
+    }
+    .item-buttons-container {
+        @include flexCenter();
+        flex-direction: column;
+        gap: 20px;
+        .item-buttons {
+            @include flexCenter();
+            flex-direction: row;
+            flex-wrap: nowrap;
+            gap: 10px;
+            button {
+                width: 25px;
+                height: 25px;
+            }
+        }
     }
 }
+
+@media screen and (max-width: 600px) {
+    .item-view {
+        flex-direction: column;
+    }
+}
+

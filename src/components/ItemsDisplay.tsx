@@ -15,6 +15,7 @@ function ItemsDisplay(props: Props) {
     const filteredItems = items.filter(item => item.category.toLowerCase() === category.toLowerCase());
 
     return (
+        <div className='fill-screen'>
         <div className='items-container'>
         {filteredItems.map((item:ItemInterface, index) => {
             return (
@@ -29,6 +30,7 @@ function ItemsDisplay(props: Props) {
                 </Link>    
             );
         })}
+        </div>
         </div>
     );
 }

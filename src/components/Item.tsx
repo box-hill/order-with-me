@@ -77,15 +77,21 @@ function Item(props: Props) {
     if(filteredItem === null) return null;
 
     return (
-        <div>
-            <Link to={`/menu/${category}`}><button>Back</button></Link>
-            <div>
-                <div>{filteredItem === null ? null : filteredItem.name}</div>
-                <div>{filteredItem === null ? null : filteredItem.price}</div>
-                <button onClick={() => modifyQuantity('minus')}>-</button>
-                <span>Quantity: {quantity}</span>
-                <button onClick={() => modifyQuantity('plus')}>+</button>
-                <button onClick={addToCart} disabled={quantity === 0}>Add to cart</button>
+        <div className='main-content'>
+            <div className='item-view'>
+                <img src={filteredItem.imgUrl} alt={filteredItem.name}/>
+                <div className='item-info'>
+                    <div>{filteredItem === null ? null : filteredItem.name}</div>
+                    <div>{filteredItem === null ? null : filteredItem.price}</div>
+                </div>
+                <div className='item-buttons-container'>
+                    <div className='item-buttons'>
+                        <button onClick={() => modifyQuantity('minus')}>-</button>
+                        <span>Quantity: {quantity}</span>
+                        <button onClick={() => modifyQuantity('plus')}>+</button>
+                    </div>
+                    <button onClick={addToCart} disabled={quantity === 0}>Add to cart</button>
+                </div>
             </div>
         </div>
     );

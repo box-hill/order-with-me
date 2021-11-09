@@ -45,7 +45,7 @@ function Form(props: Props) {
     const validLabel = 'Current Table: ' + globalTableId;
 
     return (
-        <div className="fill-screen">   
+        <div className="main-content">   
             <form className="form-table" style={{backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('./img/shopfront.jpg')`}}>
                 <label>{validSession ? validLabel : label}</label>
                 <div>
