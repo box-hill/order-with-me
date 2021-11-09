@@ -62,31 +62,38 @@ export function PendingOrders(props: Props) {
     }
   }, [orders])
 
-  if(!validSession) return <div>Enter a table to get started!</div>
-  if(loading || loadingOrder || seconds === 0) return <Loader/>;
-  if(orders === null) return <div>You currently have no pending orders!</div>;
+  if(!validSession) return <div className='main-content'>Enter a table to get started!</div>
+  if(loading || loadingOrder || seconds === 0) return (
+    <div className='main-content'>
+      <Loader/>
+    </div>
+    );
+  if(orders === null) return <div className='main-content'>You currently have no pending orders!</div>;
 
   return (
-    <div>
-      <div>Orders: </div>
-      {Object.keys(orders).map((key: string) => {
-        const orderArray: Array<CartItemObj> = orders[key];
-        return orderArray.map((order, index) => {
-          if(order.pending){  
-            return (
-              <div key={index}>
-                <div>{order.name}</div>
-                <div>{order.quantity}</div>
-                <div>{timeDifference(seconds, order.orderedAt!)}</div>
-                <div>__________________</div>
-              </div>
-            )
-          }else{
-            return null;
-          }
-        })
-      })}
-      {sumOfOrders.map((item,index) => <div key={index}><span>{item.quantity}</span><span> - {item.name}</span></div>)}
+    <div className='order-content'>
+      <div className='order-container'>
+        {Object.keys(orders).map((key: string) => {
+          const orderArray: Array<CartItemObj> = orders[key];
+          return orderArray.map((order, index) => {
+            if(order.pending){  
+              return (
+                <div key={index} className='order-item-view'>
+                  <img src={order.imageUrl} alt={order.name}/>
+                  <div className='order-item-info'>
+                    <div>{order.quantity}</div>
+                    <div>{order.name}</div>
+                  </div>
+                  <div>{timeDifference(seconds, order.orderedAt!)}</div>
+                </div>
+              )
+            }else{
+              return null;
+            }
+          })
+        })}
+        {sumOfOrders.map((item,index) => <div key={index}><span>{item.quantity}</span><span> - {item.name}</span></div>)}
+      </div>
     </div>
   );
 }

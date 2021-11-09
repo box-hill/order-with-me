@@ -904,4 +904,96 @@ nav a:hover {
     display: none;
   }
 }
+
+.order-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.order-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 83px 10px 0px 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 17px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.order-container .order-item-view {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+  -ms-grid-columns: 200px (200px)[2];
+      grid-template-columns: 200px repeat(2, 200px);
+}
+
+.order-container .order-item-view img {
+  height: 150px;
+  width: 150px;
+}
+
+.order-container .order-item-view div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.order-container .order-item-view .order-item-info {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-height: 130px;
+}
+
+.order-container .order-item-view .remove-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: black;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  border-style: none;
+  margin: 25px;
+}
+
+.order-container .order-item-view .remove-button:hover {
+  color: #EEEEEE;
+}
+
+.order-container .order-item-view .remove-button:disabled {
+  background-color: gray;
+}
 /*# sourceMappingURL=style.css.map */

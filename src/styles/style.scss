@@ -353,4 +353,35 @@ nav {
     }
 }
 
+.order-content{
+    @include flexCenter();
+}
+.order-container {
+    width: 100%;
+    min-height: 100vh;
+    padding: $nav-height + 20px 10px 0px 10px;
+    @include flexCenter();
+    font-size: 17px;
+    flex-direction: column;
+    .order-item-view {
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: 200px repeat(2, 200px);
+        img {
+            height: 150px;
+            width: 150px;
+        }
+        div {
+            @include flexCenter();
+        }
+        .order-item-info {
+            flex-direction: column;
+            min-height: 130px;
+        }
+        .remove-button {
+            @include blackWhiteBtn();
+            margin: 25px;
+        }
+    }
+}
 
