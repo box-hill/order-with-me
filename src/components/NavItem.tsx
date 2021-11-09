@@ -11,7 +11,6 @@ function NavItem(props: Props){
     <Link to={props.link}>
         <li>{props.text}</li>
     </Link>
-    // <Link to='/menu/meat/'>Hello?</Link>
   );
 }
 
