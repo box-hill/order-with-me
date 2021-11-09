@@ -3,7 +3,7 @@
 @import './loader.scss';
 @import './navbar.scss';
 
-$nav-font-size: 25px;
+$nav-font-size: 20px;
 $nav-height: 63px;
 
 @mixin flexCenter {
@@ -27,12 +27,11 @@ body {
 // nav
 nav {
     font-size: $nav-font-size;
-    font-weight: 600;
+    font-weight: 400;
     height: $nav-height;
     width: 100%;
     background-color: $color1;
     position: fixed;
-
     ul {
         list-style: none;
         height: 100%;
@@ -51,6 +50,7 @@ nav {
         transition: all 0.3s ease;
         &:hover {
             color: $color5;
+            transform: scale(1.05);
         }
     }
 }
@@ -115,7 +115,7 @@ nav {
 @media screen and (max-width: 700px) {
     .menu-grid {
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(5, 1fr);
+        grid-template-rows: repeat(5, 170px);
         .grid-item:nth-child(1) {
             grid-column: 1;
             grid-row: 1;
@@ -156,7 +156,8 @@ nav {
         border-style: none;
         border-bottom: 1px solid white;
         outline: none;
-        font-size: inherit;
+        font-size: inherit;        min-width: 400px;
+        max-width: 400px;
         color: inherit;
         width: 150px;
         text-align: center;
@@ -179,4 +180,47 @@ nav {
 
 .fill-screen {
     @include fillScreen();
+}
+
+.items-container {
+    @include flexCenter();
+    flex-wrap: wrap;
+    max-width: 1500px;
+    gap: 10px;
+    a {
+        text-decoration: none;
+        transition: all 0.1s ease;
+        background: $color1;
+        min-width: 400px;
+        max-width: 400px;
+        &:hover {
+            transform: scale(1.02);
+            background: darken( $color1, 10% );
+        }
+    }
+    .item-container {
+        padding: 20px;
+        color: $color4;
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        .text-container {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            justify-content: space-around;
+            align-items: center;
+        }
+    }
+    .item-img {
+        width: 150px;
+        height: 150px;
+    }   
+}
+
+@media screen and (max-width: 700px) {
+    .items-container a {
+       min-width: 320px;
+       max-width: 320px;
+    }
 }

@@ -15,13 +15,20 @@ function ItemsDisplay(props: Props) {
     const filteredItems = items.filter(item => item.category.toLowerCase() === category.toLowerCase());
 
     return (
-        <div>
-            <Link to='/'><button>Back</button></Link>
-            {filteredItems.map((item:ItemInterface, index) => {
-                return (
-                    <Link key={index} to={`/menu/${category}/${item.id}`}>{item.name}</Link>    
-                );
-            })}
+        <div className='items-container'>
+        {filteredItems.map((item:ItemInterface, index) => {
+            return (
+                <Link key={index} to={`/menu/${category}/${item.id}`}>
+                    <div className='item-container'>    
+                        <img className='item-img' src={item.imgUrl} alt={item.name}/>
+                        <div className='text-container'>
+                            <div>{item.name}</div>
+                            <div>{item.price}</div>
+                        </div>
+                    </div>
+                </Link>    
+            );
+        })}
         </div>
     );
 }

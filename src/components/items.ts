@@ -11,26 +11,48 @@ export interface ItemInterface {
 const meats: ItemInterface[] = [
     {
         category: 'Meat',
-        name: "A5 Wagyuu",
+        name: "Wagyuu Beef",
         id: '10',
-        alt: 'A5 juicy wagyuu beef',
-        imgUrl: "#",
+        imgUrl: "https://cdn.shopify.com/s/files/1/0482/3233/files/LoneMountainWagyu-seotool-64272-WhatToPair-blogbanner1.jpg?v=1609320587",
         price: '$123.00',
     },
     {
         category: 'Meat',
-        name: "Pork Belly",
+        name: "Sliced Pork Belly",
         id: '11',
-        imgUrl: "#",
+        imgUrl: "https://unclesbutchery.com/wp-content/uploads/2020/04/Sliced-Pork-BellyRolled-Thumb.jpg",
         price: '$10.00',
     },
     {
         category: 'Meat',
         name: "Beef tongue",
         id: '12',
-        imgUrl: "#",
+        imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWvN-LvhcMYHPRhHI5kD8RzaZ7-G-gwiIHTHFUCxOQL6eQAnU8LOjYKwyOJm3mpF_wT6I&usqp=CAU",
         price: '$12.00',
     },
+    {
+        category: 'Meat',
+        name: "Sliced Beef",
+        id: '13',
+        imgUrl: "https://www.mychineserecipes.com/wp-content/uploads/2019/03/beef-slices.jpg",
+        price: '$12.00',
+    },
+    {
+        category: 'Meat',
+        name: "Sliced Mutton",
+        id: '14',
+        imgUrl: "https://my-test-11.slatic.net/p/bbafaf71ad7dfc2f59ad9f50af3d3023.jpg",
+        price: '$12.00',
+    },
+    {
+        category: 'Meat',
+        name: "Sliced Steak",
+        id: '15',
+        imgUrl: "https://media-cdn.tripadvisor.com/media/photo-s/0e/cb/4c/b2/sliced-steak.jpg",
+        price: '$12.00',
+    },
+    
+
 ]
 
 const soups: ItemInterface[] = [
