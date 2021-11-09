@@ -344,20 +344,12 @@ nav {
     }
 }
 
-@media screen and (max-width: 900px) {
-    .cart-content {
-        font-size: 15px;
-    }
-    img {
-        display: none;
-    }
-}
-
 .order-content{
     @include flexCenter();
 }
 .order-container {
     width: 100%;
+    max-width: 1000px;
     min-height: 100vh;
     padding: $nav-height + 20px 10px 0px 10px;
     @include flexCenter();
@@ -366,7 +358,7 @@ nav {
     .order-item-view {
         display: grid;
         grid-template-rows: 1fr;
-        grid-template-columns: 200px repeat(2, 200px);
+        grid-template-columns: repeat(3, 1fr);
         img {
             height: 150px;
             width: 150px;
@@ -385,3 +377,11 @@ nav {
     }
 }
 
+@media screen and (max-width: 900px) {
+    .cart-content {
+        font-size: 15px;
+    }
+    .cart-content img {
+        display: none;
+    }
+}

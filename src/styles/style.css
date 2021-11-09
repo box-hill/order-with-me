@@ -896,15 +896,6 @@ nav a:hover {
   background-color: gray;
 }
 
-@media screen and (max-width: 900px) {
-  .cart-content {
-    font-size: 15px;
-  }
-  img {
-    display: none;
-  }
-}
-
 .order-content {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -919,6 +910,7 @@ nav a:hover {
 
 .order-container {
   width: 100%;
+  max-width: 1000px;
   min-height: 100vh;
   padding: 83px 10px 0px 10px;
   display: -webkit-box;
@@ -942,8 +934,8 @@ nav a:hover {
   display: grid;
   -ms-grid-rows: 1fr;
       grid-template-rows: 1fr;
-  -ms-grid-columns: 200px (200px)[2];
-      grid-template-columns: 200px repeat(2, 200px);
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
 }
 
 .order-container .order-item-view img {
@@ -995,5 +987,14 @@ nav a:hover {
 
 .order-container .order-item-view .remove-button:disabled {
   background-color: gray;
+}
+
+@media screen and (max-width: 900px) {
+  .cart-content {
+    font-size: 15px;
+  }
+  .cart-content img {
+    display: none;
+  }
 }
 /*# sourceMappingURL=style.css.map */

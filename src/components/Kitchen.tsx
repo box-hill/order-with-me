@@ -99,14 +99,14 @@ function Kitchen() {
         return <div>Loading...</div>
     }
     return (
-        <div>
+        <div className='main-content'>
             {ordersArray.map(order => {
                 return (
                     <div key={order.uid}>
                         <span>{order.name}</span>
-                        <span> ---- {order.quantity}</span>
-                        <span> ---- {order.tableId}</span>
-                        <span> ---- {timeDifference(seconds, order.orderedAt!)}</span>
+                        <span> {order.quantity}</span>
+                        <span> {order.tableId}</span>
+                        <span> {timeDifference(seconds, order.orderedAt!)}</span>
                         <button onClick={completeOrder} data-key={order.uid}>Completed</button>
                     </div>
                 );
