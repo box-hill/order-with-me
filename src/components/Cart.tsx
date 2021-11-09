@@ -83,12 +83,12 @@ export function Cart(props: Props) {
                             <div className='item-buttons-container'>
                                 <div className='item-buttons'>
                                     <button onClick={() => modifyCart('minus', item.id)} disabled={item.quantity === 1}>-</button>
-                                    <div>Quantity: {item.quantity}</div>
+                                    <div>{item.quantity}</div>
                                     <button onClick={() => modifyCart('plus', item.id)}>+</button>
                                 </div>
                             </div>
                             <div>
-                                <button className='remove-button' onClick={() => removeItemFromCart(item.id)}>Remove Item</button>
+                                <button className='remove-button' onClick={() => removeItemFromCart(item.id)}>Remove</button>
                             </div>
                             <div>{centsToDollars(itemPrice*item.quantity)}</div>
                         </div>
@@ -98,7 +98,7 @@ export function Cart(props: Props) {
             <div className='checkout-info'>
                 <div>Total: <span>{totalPrice}</span></div>
                 <div>Table: {globalTableId}</div>
-                <button onClick={processOrder} disabled={!validSession}>Order</button>
+                <button onClick={processOrder} disabled={!validSession || cart.length===0}>Order</button>
                 {validSession ? null : <div>Enter a table before ordering!</div>}
             </div>
         </div>

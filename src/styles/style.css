@@ -757,7 +757,6 @@ nav a:hover {
   width: 100%;
   font-size: 20px;
   padding-top: 63px;
-  background-color: #EEEEEE;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -820,6 +819,7 @@ nav a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  min-height: 130px;
 }
 
 .cart-content .cart-container .cart-item-view .remove-button {
@@ -837,6 +837,7 @@ nav a:hover {
   font-size: 20px;
   font-weight: 700;
   border-style: none;
+  margin: 25px;
 }
 
 .cart-content .cart-container .cart-item-view .remove-button:hover {
@@ -893,5 +894,14 @@ nav a:hover {
 
 .cart-content .checkout-info button:disabled {
   background-color: gray;
+}
+
+@media screen and (max-width: 900px) {
+  .cart-content {
+    font-size: 15px;
+  }
+  img {
+    display: none;
+  }
 }
 /*# sourceMappingURL=style.css.map */

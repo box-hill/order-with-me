@@ -297,7 +297,7 @@ nav {
     width: 100%;
     font-size: 20px;
     padding-top: $nav-height;
-    background-color: $color4;
+
     @include flexCenter();
     flex-direction: column;
     .cart-container {
@@ -321,9 +321,11 @@ nav {
             }
             .cart-item-info {
                 flex-direction: column;
+                min-height: 130px;
             }
             .remove-button {
                 @include blackWhiteBtn();
+                margin: 25px;
             }
         }
     }
@@ -342,5 +344,13 @@ nav {
     }
 }
 
+@media screen and (max-width: 900px) {
+    .cart-content {
+        font-size: 15px;
+    }
+    img {
+        display: none;
+    }
+}
 
 
