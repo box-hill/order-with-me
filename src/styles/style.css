@@ -997,4 +997,60 @@ nav a:hover {
     display: none;
   }
 }
+
+.kitchen-content {
+  height: 100vh;
+  max-width: 1000px;
+  padding: 83px 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.kitchen-content .kitchen-item {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+  -ms-grid-columns: (1fr)[5];
+      grid-template-columns: repeat(5, 1fr);
+  padding: 10px 0px;
+  border-bottom: 1px solid black;
+}
+
+.kitchen-content .kitchen-item:hover {
+  background-color: #EEEEEE;
+}
+
+.kitchen-content .kitchen-item div {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.kitchen-content .kitchen-item button {
+  border: 1px solid green;
+  background: white;
+  color: green;
+  font-size: 17px;
+}
+
+.kitchen-content .kitchen-item button:hover {
+  color: black;
+  border: 1px solid black;
+}
 /*# sourceMappingURL=style.css.map */

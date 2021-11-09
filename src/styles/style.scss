@@ -385,3 +385,37 @@ nav {
         display: none;
     }
 }
+
+
+.kitchen-content {
+    height: 100vh;
+    max-width: 1000px;
+    padding: $nav-height + 20px 20px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    .kitchen-item {
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: repeat(5, 1fr);
+        padding: 10px 0px;
+        border-bottom: 1px solid black;
+        &:hover {
+            background-color: $color4;
+        }
+        div {
+            height: 100%;
+            @include flexCenter();
+        }
+        button {
+            border: 1px solid green;
+            background: white;
+            color: green;
+            font-size: 17px;
+            &:hover {
+                color: darken(green, 50%);
+                border: 1px solid darken(green, 50%);
+            }
+        }
+    }
+}
