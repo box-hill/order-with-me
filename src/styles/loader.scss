@@ -18,25 +18,16 @@ $margin: ($master / 2) 0 ($master + ($master / 2)) 0;
 *:after,
 *:before {
 	box-sizing: border-box;
-	// -webkit-transition: all 0.3s;
-	// 				transition: all 0.3s;
+
 }
 
 .card {
-	// background: $cardbackground;
 	background: $color4;
-	//border-radius: 0.15em;
 	font-size: $master;
-
 	margin: 0 auto;
 	padding: ($master + ($master / 2)) ($master * 2);
-
 	text-align: center;
-
-
 	width: ($master * 20);
-	
-	
 	h1 {
 		color: $color;
 		font-size: ($master + ($master / 2));
