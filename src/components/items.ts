@@ -58,14 +58,14 @@ const meats: ItemInterface[] = [
 const soups: ItemInterface[] = [
     {
         category: 'Soup',
-        name: "Spicy Soup Base",
+        name: "Spicy Soup",
         id: '51',
         imgUrl: "https://www.hwcmagazine.com/wp-content/uploads/2012/02/Spicy-Sichuan-Hot-Pot-1200-x-1200-1295.jpg",
         price: '$16.00',
     },
     {
         category: 'Soup',
-        name: "Chicken Broth Soup Base",
+        name: "Chicken Soup",
         id: '52',
         imgUrl: "https://media-cdn.tripadvisor.com/media/photo-s/10/ca/45/07/macau-style-pork-bone.jpg",
         price: '$15.00',
@@ -144,7 +144,7 @@ const sides: ItemInterface[] = [
     },
     {
         category: 'Sides',
-        name: "Special Fried Rice",
+        name: "Fried Rice",
         id: '82',
         imgUrl: "https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/C907FB56-A48F-452B-8649-E0530F4E7FE1/Derivates/2d963bfb-a7c0-4743-b352-719a69875f11.jpg",
         price: '$4.50',
