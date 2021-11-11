@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/order-with-me/static/css/main.e64f37c6.chunk.css",
+    "main.css": "/order-with-me/static/css/main.08415eb0.chunk.css",
     "main.js": "/order-with-me/static/js/main.318c4af0.chunk.js",
     "main.js.map": "/order-with-me/static/js/main.318c4af0.chunk.js.map",
     "runtime-main.js": "/order-with-me/static/js/runtime-main.03f127d3.js",
@@ -8,13 +8,13 @@
     "static/js/2.370547b9.chunk.js": "/order-with-me/static/js/2.370547b9.chunk.js",
     "static/js/2.370547b9.chunk.js.map": "/order-with-me/static/js/2.370547b9.chunk.js.map",
     "index.html": "/order-with-me/index.html",
-    "static/css/main.e64f37c6.chunk.css.map": "/order-with-me/static/css/main.e64f37c6.chunk.css.map",
+    "static/css/main.08415eb0.chunk.css.map": "/order-with-me/static/css/main.08415eb0.chunk.css.map",
     "static/js/2.370547b9.chunk.js.LICENSE.txt": "/order-with-me/static/js/2.370547b9.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.03f127d3.js",
     "static/js/2.370547b9.chunk.js",
-    "static/css/main.e64f37c6.chunk.css",
+    "static/css/main.08415eb0.chunk.css",
     "static/js/main.318c4af0.chunk.js"
   ]
 }
