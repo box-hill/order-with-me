@@ -268,7 +268,7 @@ nav {
   font-weight: 400;
   height: 63px;
   width: 100%;
-  background-color: #222831;
+  background-color: #000000;
   position: fixed;
 }
 
@@ -334,8 +334,8 @@ nav a:hover {
   display: grid;
   width: 100%;
   height: 100%;
-  padding: 10px;
-  gap: 10px;
+  padding: 3px;
+  gap: 3px;
   -ms-grid-columns: (1fr)[5];
       grid-template-columns: repeat(5, 1fr);
   -ms-grid-rows: (1fr)[3];
@@ -380,8 +380,8 @@ nav a:hover {
 }
 
 .menu-grid .grid-item:hover {
-  -webkit-transform: scale(1.02);
-          transform: scale(1.02);
+  -webkit-transform: scale(1.01);
+          transform: scale(1.01);
   -webkit-filter: brightness(170%);
           filter: brightness(170%);
 }
@@ -559,7 +559,7 @@ nav a:hover {
   text-decoration: none;
   -webkit-transition: all 0.1s ease;
   transition: all 0.1s ease;
-  background: #222831;
+  background: #000000;
   min-width: 400px;
   max-width: 400px;
 }
@@ -567,7 +567,7 @@ nav a:hover {
 .items-container a:hover {
   -webkit-transform: scale(1.02);
           transform: scale(1.02);
-  background: #0d0f13;
+  background: black;
 }
 
 .items-container .item-container {

@@ -77,8 +77,8 @@ nav {
 .menu-grid {
     display: grid;
     @include fillScreen();
-    padding: 10px;
-    gap: 10px;
+    padding: 3px; 
+    gap: 3px; 
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(3, 1fr);
     .grid-item {
@@ -97,7 +97,7 @@ nav {
             width: 100%;
         }
         &:hover {
-            transform: scale(1.02);
+            transform: scale(1.01);
             filter: brightness(170%);
         }
     }
